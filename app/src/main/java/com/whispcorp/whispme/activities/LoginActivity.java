@@ -13,8 +13,10 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.LinearLayout;
 
 
+import com.jaeger.library.StatusBarUtil;
 import com.whispcorp.whispme.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.root_layout);
+        LinearLayout constraintLayout = (LinearLayout) findViewById(R.id.root_layout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(3000);
