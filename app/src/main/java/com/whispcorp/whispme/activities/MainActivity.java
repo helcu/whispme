@@ -1,8 +1,11 @@
 package com.whispcorp.whispme.activities;
 
+import android.annotation.SuppressLint;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.luseen.spacenavigation.SpaceItem;
@@ -11,13 +14,16 @@ import com.luseen.spacenavigation.SpaceOnClickListener;
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.adapters.ViewPagerAdapter;
 import com.whispcorp.whispme.fragments.*;
+import com.whispcorp.whispme.util.ViewPagerCustom;
+
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
+    ViewPagerCustom viewPager;
     MapMenu map_menu_rag;
     Notification notificationAdapter;
     User userAdapter;
     World worldAdapter;
+
 
 
     @Override
@@ -26,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-
+        viewPager = (ViewPagerCustom) findViewById(R.id.viewpager);
+        viewPager.setPagingEnabled(false);
 
 
 //        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -106,7 +112,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+          //Disable ViewPager Swipe
+
+
+
     }
+
+
+
 
 
     private void setupViewPager(ViewPager viewPager)
