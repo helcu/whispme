@@ -1,28 +1,25 @@
-package com.whispcorp.whispme.activities;
+package com.whispcorp.whispme.view.activities;
 
-import android.annotation.SuppressLint;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
 import com.whispcorp.whispme.R;
-import com.whispcorp.whispme.adapters.ViewPagerAdapter;
-import com.whispcorp.whispme.fragments.*;
+import com.whispcorp.whispme.view.adapters.ViewPagerAdapter;
+import com.whispcorp.whispme.view.fragments.*;
 import com.whispcorp.whispme.util.ViewPagerCustom;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPagerCustom viewPager;
-    MapMenu map_menu_rag;
-    Notification notificationAdapter;
-    User userAdapter;
-    World worldAdapter;
+    MapMenuFragment map_menu_rag;
+    NotificationFragment notificationFragmentAdapter;
+    UserFragment userFragmentAdapter;
+    WorldFragment worldFragmentAdapter;
 
 
 
@@ -126,14 +123,14 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        map_menu_rag =new MapMenu();
-        notificationAdapter=new Notification();
-        userAdapter=new User();
-        worldAdapter = new World();
+        map_menu_rag =new MapMenuFragment();
+        notificationFragmentAdapter =new NotificationFragment();
+        userFragmentAdapter =new UserFragment();
+        worldFragmentAdapter = new WorldFragment();
         adapter.addFragment(map_menu_rag);
-        adapter.addFragment(notificationAdapter);
-        adapter.addFragment(userAdapter);
-        adapter.addFragment(worldAdapter);
+        adapter.addFragment(notificationFragmentAdapter);
+        adapter.addFragment(userFragmentAdapter);
+        adapter.addFragment(worldFragmentAdapter);
         viewPager.setAdapter(adapter);
     }
 

@@ -1,9 +1,8 @@
-package com.whispcorp.whispme.adapters;
+package com.whispcorp.whispme.view.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +16,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
+
     @Override
     public Fragment getItem(int position) {
         return mFragmentList.get(position);
@@ -30,8 +30,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment) {
         mFragmentList.add(fragment);
     }
-
-
-
-
 }

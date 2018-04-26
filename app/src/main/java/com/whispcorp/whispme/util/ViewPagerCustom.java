@@ -5,9 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-public class ViewPagerCustom extends ViewPager{
-
-
+public class ViewPagerCustom extends ViewPager {
+    
     private boolean enabled;
 
     public ViewPagerCustom(Context context, AttributeSet attrs) {
