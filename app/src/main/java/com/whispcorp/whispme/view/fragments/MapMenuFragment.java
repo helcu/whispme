@@ -65,7 +65,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
             mFragmentManager = getActivity().getSupportFragmentManager();
 
             SupportMapFragment mapFragment = (SupportMapFragment) mFragmentManager
-                    .findFragmentById(R.id.map);
+                    .findFragmentById(R.id  .map);
             mapFragment.getMapAsync(MapMenuFragment.this);
 
             if (runtimePermissions()) {

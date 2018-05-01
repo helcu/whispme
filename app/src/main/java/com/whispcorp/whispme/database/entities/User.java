@@ -19,12 +19,13 @@ public class User {
     private String bio;
     private String photo;
     private Integer followers;
+    private Integer following;
 
 
     public User() {
     }
 
-    public User(Integer id, String serverId, String username, String email, String bio, String photo, Integer followers) {
+    public User(Integer id, String serverId, String username, String email, String bio, String photo, Integer followers, Integer following) {
         this.id = id;
         this.serverId = serverId;
         this.username = username;
@@ -32,6 +33,7 @@ public class User {
         this.bio = bio;
         this.photo = photo;
         this.followers = followers;
+        this.following = following;
     }
 
     public Integer getId() {
@@ -88,5 +90,13 @@ public class User {
 
     public void setFollowers(Integer followers) {
         this.followers = followers;
+    }
+
+    public Integer getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Integer following) {
+        this.following = following;
     }
 }

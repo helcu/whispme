@@ -28,7 +28,6 @@
             app:lottie_loop="true"
             app:lottie_autoPlay="true" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +42,6 @@
             android:layout_height="wrap_content"
             android:theme="@style/TextLabelInputLayout">
 
-
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
@@ -51,7 +49,6 @@
                 android:textSize="20dp"
                 android:hint="Usuario"
                 android:inputType="textEmailAddress" />
-
         </android.support.design.widget.TextInputLayout>
 
 
@@ -61,7 +58,6 @@
             android:layout_height="wrap_content"
             android:theme="@style/TextLabelInputLayout">
 
-
             <EditText
                 android:id="@+id/password"
                 android:textSize="20dp"
@@ -69,7 +65,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
                 android:inputType="textPassword" />
-
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -83,17 +78,30 @@
             android:background="@drawable/rounded_button"
             android:elevation="0dp"
             android:textColor="@color/colorButtonLogin"
-
             android:text="INGRESAR" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_weight="0"
-        android:textColor="@color/colorAccentLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="No tienes una cuenta? Registrate"/>
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No tienes una cuenta?"
+            android:textColor="@color/colorAccentLogin" />
+
+        <TextView
+            android:id="@+id/registerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registrate"
+            android:textStyle="italic|bold"
+            android:textColor="@color/colorAccentLogin"
+            android:layout_marginStart="5dp" />
+    </LinearLayout>
 
 </LinearLayout>

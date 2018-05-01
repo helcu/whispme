@@ -8,6 +8,7 @@ import android.view.View;
 import android.graphics.drawable.AnimationDrawable;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 import com.whispcorp.whispme.R;
@@ -36,6 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
+
+        TextView registerTextView = findViewById(R.id.registerTextView);
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
     }
 
 }
