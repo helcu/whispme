@@ -38,7 +38,7 @@ public class NotificationFragment extends Fragment {
 
         Toolbar toolbar = (Toolbar) viewFragment.findViewById(R.id.toolbar_tendence);
 
-        toolbar.setTitle("Tendencias");
+        toolbar.setTitle("#Tendencias");
         toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
