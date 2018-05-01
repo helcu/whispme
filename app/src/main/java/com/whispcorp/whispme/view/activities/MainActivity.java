@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         SpaceNavigationView spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("HOME", R.drawable.ic_home));
-        spaceNavigationView.addSpaceItem(new SpaceItem("NOTIFICATION", R.drawable.ic_android_black_24dp));
-        spaceNavigationView.addSpaceItem(new SpaceItem("USER", R.drawable.ic_android_black_24dp));
-        spaceNavigationView.addSpaceItem(new SpaceItem("WORLD", R.drawable.ic_android_black_24dp));
+        spaceNavigationView.addSpaceItem(new SpaceItem("NOTIFICATION", R.drawable.ic_flash));
+        spaceNavigationView.addSpaceItem(new SpaceItem("USER", R.drawable.ic_bell));
+        spaceNavigationView.addSpaceItem(new SpaceItem("WORLD", R.drawable.ic_person_black_24dp));
         spaceNavigationView.setCentreButtonIcon(R.drawable.ic_record_voice_over);
         spaceNavigationView.showIconOnly();
 
