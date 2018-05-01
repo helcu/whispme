@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.MainActivity" />
+        <activity android:name=".view.activities.MainActivity"
+            android:theme="@style/AppFullScreenTheme"
+            />
 
         <!-- Services -->
         <service android:name=".services.LocationService" />

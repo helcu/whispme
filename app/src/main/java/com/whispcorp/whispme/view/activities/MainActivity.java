@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         viewPager = (ViewPagerCustom) findViewById(R.id.viewpager);
         viewPager.setPagingEnabled(false);
 
