@@ -1,8 +1,5 @@
-package com.whispcorp.whispme.api;
+package com.whispcorp.whispme.network;
 
-/**
- * Created by Optimus on 1/05/2018.
- */
 
 public class Config {
 

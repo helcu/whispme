@@ -1,5 +1,5 @@
 package com.whispcorp.whispme.services;
-import com.whispcorp.whispme.api.Config;
+import com.whispcorp.whispme.network.Config;
 import com.whispcorp.whispme.database.entities.ServiceResponse;
 import com.whispcorp.whispme.database.entities.User;
 

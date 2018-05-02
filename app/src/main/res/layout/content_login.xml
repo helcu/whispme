@@ -92,13 +92,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No tienes una cuenta?"
+            android:textSize="17dp"
             android:textColor="@color/colorAccentLogin" />
 
         <TextView
             android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrate"
+            android:text="Registrate Aquí"
+            android:textSize="17dp"
             android:textStyle="italic|bold"
             android:textColor="@color/colorAccentLogin"
             android:layout_marginStart="5dp" />

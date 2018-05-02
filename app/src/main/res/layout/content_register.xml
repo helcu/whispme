@@ -12,7 +12,6 @@
     tools:context="com.whispcorp.whispme.view.activities.RegisterActivity"
     tools:showIn="@layout/activity_register">
 
-    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,11 +82,11 @@
             android:id="@+id/registerButton"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="Register"
+            android:hint="Register here"
             android:textSize="20dp"
             android:textColorHint="@color/colorButtonLogin"
             android:background="@drawable/rounded_button"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"/>
     </LinearLayout>

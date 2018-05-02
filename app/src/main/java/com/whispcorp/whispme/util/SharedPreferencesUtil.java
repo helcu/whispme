@@ -2,19 +2,23 @@ package com.whispcorp.whispme.util;
 
 import android.content.SharedPreferences;
 
+import com.whispcorp.whispme.WhispmeApplication;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class SharePreferencesUtil {
+public class SharedPreferencesUtil {
 
-    public static void setValue(SharedPreferences sp, String key, String value) {
+    private static SharedPreferences sp = WhispmeApplication.getInstance().getSharedPreferences();
+
+    public static void setValue(String key, String value) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, value);
         editor.apply();
     }
 
-    public static void setValue(SharedPreferences sp, HashMap<String, String> hashMap) {
+    public static void setValue(HashMap<String, String> hashMap) {
         SharedPreferences.Editor editor = sp.edit();
         for (Map.Entry<String, String> entry : hashMap.entrySet()) {
             editor.putString(entry.getKey(), entry.getValue());
@@ -22,7 +26,7 @@ public class SharePreferencesUtil {
         editor.apply();
     }
 
-    public static String getValue(SharedPreferences sp, String key, String value) {
+    public static String getValue(String key, String value) {
         return sp.getString(key, value);
     }
 }
