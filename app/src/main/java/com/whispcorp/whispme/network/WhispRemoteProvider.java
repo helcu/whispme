@@ -36,6 +36,41 @@ public class WhispRemoteProvider {
         return URL + "/whisp";
     }
 
+    public void getTrends(ProviderRequestListener callback){
+
+
+        AndroidNetworking.get(WHISP_URL() + "/trend")
+                .setPriority(Priority.LOW)
+                .setTag("TAG")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d(TAG, "onResponse: OK");
+                try {
+                    if (response != null) {
+                                /*List<Hero> heroes = Hero.ProviderBuilder
+                                        .from(response).buildAll();
+                                callback.onResponse(heroes);*/
+                        Log.w(TAG, response.getString(0));
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                    e.printStackTrace();
+                    callback.onError(e.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ANError anError) {
+                callback.onError(anError.getMessage());
+            }
+        });
+
+
+    }
+
+
     public static void getAllUsers(ProviderRequestListener callback) {
         AndroidNetworking.get(USER_URL())
                 .setPriority(Priority.LOW)
