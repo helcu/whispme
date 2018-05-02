@@ -19,4 +19,10 @@ public class Constants {
         public static int LOCATION = 5000;
     }
 
+    public static class Auth {
+        public static String TOKEN = "TOKEN";
+        public static String PASSWORD = "PASSWORD";
+        public static String REFRESH_TOKEN = "REFRESH_TOKEN";
+    }
+
 }

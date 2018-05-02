@@ -16,6 +16,7 @@ public class User {
     private String serverId;
     private String username;
     private String email;
+    private String password;
     private String bio;
     private String photo;
     private Integer followers;
@@ -25,11 +26,12 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String serverId, String username, String email, String bio, String photo, Integer followers, Integer following) {
+    public User(Integer id, String serverId, String username, String email, String password, String bio, String photo, Integer followers, Integer following) {
         this.id = id;
         this.serverId = serverId;
         this.username = username;
         this.email = email;
+        this.password = password;
         this.bio = bio;
         this.photo = photo;
         this.followers = followers;
@@ -66,6 +68,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getBio() {

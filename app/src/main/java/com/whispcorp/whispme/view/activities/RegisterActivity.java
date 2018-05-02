@@ -1,5 +1,7 @@
 package com.whispcorp.whispme.view.activities;
 
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,9 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.whispcorp.whispme.R;
+import com.whispcorp.whispme.database.entities.User;
+import com.whispcorp.whispme.network.WhispRemoteProvider;
+
+import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
     TextInputEditText usernameTextInputEditText;
@@ -24,6 +31,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        LinearLayout constraintLayout = findViewById(R.id.registerLinearLayout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
+
         usernameTextInputEditText = findViewById(R.id.usernameTextInputEditText);
         emailTextInputEditText = findViewById(R.id.emailTextInputEditText);
         passwordTextInputEditText = findViewById(R.id.passwordTextInputEditText);
@@ -34,7 +47,22 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    //TODO: Added services of registered
+                    User user = new User();
+                    user.setUsername(usernameTextInputEditText.getText().toString());
+                    user.setEmail(emailTextInputEditText.getText().toString());
+                    user.setPassword(passwordTextInputEditText.getText().toString());
+                    WhispRemoteProvider.registerUser(user, new WhispRemoteProvider.ProviderRequestListener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject entities) {
+                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
