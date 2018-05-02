@@ -7,8 +7,11 @@
     <color name="colorAccentLogin">#f9f9f9</color>
     <color name="colorButtonLogin">#e95c35</color>
 
+    <color name="colorProfilePhotoFilter">#99e95c35</color>
+
     <color name="black">#000000</color>
     <color name="grey">#BDBDBD</color>
     <color name="white">#FFFFFD</color>
     <color name="colorConfirm">#3AEF29</color>
+    <color name="semiTransparentWhite">#40FFFFFF</color>
 </resources>

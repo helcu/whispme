@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     MapMenuFragment map_menu_rag;
     NotificationFragment notificationFragmentAdapter;
     UserFragment userFragmentAdapter;
-    WorldFragment worldFragmentAdapter;
+    ProfileFragment profileFragmentAdapter;
 
 
 
@@ -125,11 +125,11 @@ public class MainActivity extends AppCompatActivity {
         map_menu_rag =new MapMenuFragment();
         notificationFragmentAdapter =new NotificationFragment();
         userFragmentAdapter =new UserFragment();
-        worldFragmentAdapter = new WorldFragment();
+        profileFragmentAdapter = new ProfileFragment();
         adapter.addFragment(map_menu_rag);
         adapter.addFragment(notificationFragmentAdapter);
         adapter.addFragment(userFragmentAdapter);
-        adapter.addFragment(worldFragmentAdapter);
+        adapter.addFragment(profileFragmentAdapter);
         viewPager.setAdapter(adapter);
     }
 

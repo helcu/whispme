@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="WHISPME"
             android:textColor="@color/colorAccentLogin"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
 
         <android.support.design.widget.TextInputLayout
@@ -46,7 +46,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:hint="Usuario"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
@@ -71,7 +71,7 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No tienes una cuenta?"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:textColor="@color/colorAccentLogin" />
 
         <TextView
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrate Aquí"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:textStyle="italic|bold"
             android:textColor="@color/colorAccentLogin"
             android:layout_marginStart="5dp" />
