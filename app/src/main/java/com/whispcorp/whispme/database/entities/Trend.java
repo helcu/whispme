@@ -1,11 +1,16 @@
 package com.whispcorp.whispme.database.entities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Trend {
 
     private String userName;
     private String title;
     private String place;
     private String hashtags;
+    private Integer likes;
+    private Date    time;
 
 
     public String getUserName() {
@@ -40,4 +45,27 @@ public class Trend {
         this.hashtags = hashtags;
     }
 
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+
+    public String getTimeAsString(){
+
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDate.format(this.time);
+
+    }
 }
