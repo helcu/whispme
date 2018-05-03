@@ -25,4 +25,10 @@ public class Constants {
         public static String REFRESH_TOKEN = "REFRESH_TOKEN";
     }
 
+    public static class DateFormat {
+        public static String TRENDFORMAT = "dd/MM/yyyy";
+
+    }
+
+
 }
