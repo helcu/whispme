@@ -17,7 +17,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.location.gps" />
 
-
     <application
         android:name=".WhispmeApplication"
         android:allowBackup="true"
@@ -61,6 +60,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".view.activities.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".view.activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.whispcorp.whispme.view.activities.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

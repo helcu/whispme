@@ -32,4 +32,11 @@ public class Constants {
         public final static String PERMISSION_RATIONALE_LOCATION_MESSAGE =
                 "Whispme necesita permiso de la localización para obtener whisps cercanos.";
     }
+
+    public static class Auth {
+        public static String TOKEN = "TOKEN";
+        public static String PASSWORD = "PASSWORD";
+        public static String REFRESH_TOKEN = "REFRESH_TOKEN";
+    }
+
 }

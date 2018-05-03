@@ -73,4 +73,7 @@ dependencies {
 
     //Circle Image
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Diagonal Layout
+    implementation 'com.github.florent37:diagonallayout:1.0.7'
 }
