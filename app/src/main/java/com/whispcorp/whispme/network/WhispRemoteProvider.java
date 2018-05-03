@@ -39,11 +39,13 @@ public class WhispRemoteProvider {
         return URL + "/whisp";
     }
 
+   static MutableLiveData<List<Trend>> trendList = new MutableLiveData<>();
+
     public static void getTrends(final ProviderRequestListener callback){
 
 
         AndroidNetworking.get(WHISP_URL() + "/trend")
-                .setPriority(Priority.LOW)
+                .setPriority(Priority.IMMEDIATE)
                 .setTag("TAG")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -52,9 +54,10 @@ public class WhispRemoteProvider {
                 Log.d(TAG, "onResponse: OK");
                 try {
                     if (response != null) {
-                                /*List<Hero> heroes = Hero.ProviderBuilder
-                                        .from(response).buildAll();
-                                callback.onResponse(heroes);*/
+
+
+                            trendList.postValue(Trend.getListFromJson(response));
+                            callback.onResponse(trendList);
                         Log.w(TAG, response.getString(0));
                     }
                 } catch (Exception e) {
@@ -85,12 +88,9 @@ public class WhispRemoteProvider {
                         Log.d(TAG, "onResponse: OK");
                         try {
 
-                            MutableLiveData<List<Trend>> trendList = new MutableLiveData<>();
-                            if (response != null) {
-                                trendList.setValue(Trend.getListFromJson(response));
-                                callback.onResponse(trendList);
+
                                 Log.w(TAG, response.getString(0));
-                            }
+
                         } catch (Exception e) {
                             Log.e(TAG, e.getMessage());
                             e.printStackTrace();
