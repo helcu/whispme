@@ -20,6 +20,7 @@
             mapbox:diagonal_direction="left">
 
             <ImageView
+                android:id="@+id/photoProfileImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:foreground="@color/colorProfilePhotoFilter"
