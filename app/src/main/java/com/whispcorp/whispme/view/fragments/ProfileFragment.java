@@ -41,19 +41,19 @@ public class ProfileFragment extends Fragment {
         RelativeLayout profileRelativeLayout = view.findViewById(R.id.profileRelativeLayout);
         ImageView photoProfileImageView = view.findViewById(R.id.photoProfileImageView);
 
-        profileRelativeLayout.setOnTouchListener(new View.OnTouchListener() {
+        /*profileRelativeLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 final int x = (int) event.getRawX();
                 final int y = (int) event.getRawY();
 
                 switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                    /*case MotionEvent.ACTION_DOWN:
+                    *//*case MotionEvent.ACTION_DOWN:
                         pos_x = x - layoutParams.leftMargin;
                         pos_y = y - layoutParams.topMargin;
                         break;
 
-*/                    case MotionEvent.ACTION_MOVE:
+*//*                    case MotionEvent.ACTION_MOVE:
                         int width = v.getLayoutParams().width;
                         int height = v.getLayoutParams().height;
                         v.getLayoutParams().height = v.getLayoutParams().height - 1;
@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
                 }
                 return true;
             }
-        });
+        });*/
 
 
         return view;
