@@ -32,6 +32,7 @@ public class TrendRecyclerAdapter extends RecyclerView.Adapter<TrendRecyclerAdap
        // holder.time .setText(trendList.get(position).getTimeAsString());
         holder.userName.setText(trendList.get(position).getUserName());
         holder.likeNUmber.setText(String.valueOf(trendList.get(position).getLikes()));
+        holder.profile.setImageUrl("https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png");
 
     }
 
