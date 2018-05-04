@@ -1,22 +1,50 @@
 package com.whispcorp.whispme.util;
 
+import android.os.Environment;
+
 public class Constants {
 
     public static class Action {
-        public static String LOCATION_UPDATE = "ACTION_LOCATION_UPDATE";
+        public final static String LOCATION_UPDATE = "ACTION_LOCATION_UPDATE";
     }
 
     public static class Extra {
-        public static String LONGITUDE = "EXTRA_LONGITUDE";
-        public static String LATITUDE = "EXTRA_LATITUDE";
+        public final static String LONGITUDE = "EXTRA_LONGITUDE";
+        public final static String LATITUDE = "EXTRA_LATITUDE";
     }
 
     public static class RequestCode {
-        public static int LOCATION = 1111;
+        public final static int LOCATION = 1111;
+        public final static int SETTING_LOCATION = 1112;
+        public final static int RECORD_AUDIO = 1113;
+        public final static int WRITE_EXTERNAL_STORAGE = 1114;
+        public final static int WHISP_RECORDED_AUDIO = 1115;
     }
 
     public static class UpdateTime {
-        public static int LOCATION = 5000;
+        public final static int LOCATION = 5000;
+    }
+
+    public static class Default {
+        public final static double LONGITUDE = -77.0540145;
+        public final static double LATITUDE = -12.0877456;
+        public final static double BOUNDS = 0.001;
+        public final static String WHISP_AUDIO_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + "/recorded_audio.wav";
+    }
+
+    public static class Message {
+        public final static String PERMISSION_RATIONALE_LOCATION_TITLE =
+                "Permiso de localización";
+        public final static String PERMISSION_RATIONALE_LOCATION_MESSAGE =
+                "Whispme necesita permiso de localización para obtener whisps cercanos.";
+        public final static String PERMISSION_RATIONALE_RECORD_AUDIO_TITLE =
+                "Permiso de audio";
+        public final static String PERMISSION_RATIONALE_RECORD_AUDIO_MESSAGE =
+                "Whispme necesita permiso de grabado de audio para crear whisps.";
+        public final static String PERMISSION_RATIONALE_WRITE_EXTERNAL_STORAGE_TITLE =
+                "Permiso de escritura";
+        public final static String PERMISSION_RATIONALE_WRITE_EXTERNAL_STORAGE_MESSAGE =
+                "Whispme necesita permiso de escritura para crear whisps.";
     }
 
     public static class Auth {
