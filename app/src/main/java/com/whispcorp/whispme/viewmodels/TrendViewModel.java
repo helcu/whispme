@@ -30,7 +30,7 @@ public class TrendViewModel extends ViewModel {
         WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
             @Override
             public void onResponse( MutableLiveData<List<Trend>> response) {
-
+                Log.d("LLAMADADEOBERSERRRRRRR", "jalo data inirdata");
                 trendList = response;
             }
 
@@ -48,13 +48,29 @@ public class TrendViewModel extends ViewModel {
     public TrendViewModel (){
     //puede haber application como parametro
 
+        WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
+            @Override
+            public void onResponse( MutableLiveData<List<Trend>> response) {
+                Log.d("LLAMADADEOBERSERRRRRRR", "trajo data constructor");
+                trendList = response;
+            }
 
+            @Override
+            public void onError(String message) {
+
+                Log.d("", "onError: error al traeer info en view model");
+
+            }
+
+        });
 
 
     }
 
 
     public MutableLiveData<List<Trend>> getTrendList() {
+        Log.d("LLAMADADEOBERSERRRRRRR", "peticion de get vm");
+
         return trendList;
     }
 

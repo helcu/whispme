@@ -55,9 +55,9 @@ public class WhispRemoteProvider {
                 try {
                     if (response != null) {
 
-
                             trendList.postValue(Trend.getListFromJson(response));
                             callback.onResponse(trendList);
+                        Log.d("LLAMADADEOBERSERRRRRRR", "llamada api provider");
                         Log.w(TAG, response.getString(0));
                     }
                 } catch (Exception e) {

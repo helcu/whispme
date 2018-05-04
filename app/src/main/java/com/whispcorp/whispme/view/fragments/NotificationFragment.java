@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,10 @@ import java.util.List;
 public class NotificationFragment extends Fragment {
 
     private Context mContext;
+
+    TrendViewModel trendiewModel;
+    final TrendRecyclerAdapter adapter = new TrendRecyclerAdapter();
+
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -40,6 +45,30 @@ public class NotificationFragment extends Fragment {
         super.onAttach(context);
         mContext = context;
     }
+
+    @Override
+    public  void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+            trendiewModel =  new ViewModelProviders().of(this).get(TrendViewModel.class);
+
+        trendiewModel.initData();
+
+        trendiewModel.getTrendList().observe(this, new Observer<List<Trend>>() {
+            @Override
+            public void onChanged(@Nullable List<Trend> trends) {
+                Log.d("LLAMADADEOBERSERRRRRRR", "observador actiado");
+                adapter.setTrendList(trends);
+            }
+        });
+
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,22 +84,13 @@ public class NotificationFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final TrendRecyclerAdapter adapter = new TrendRecyclerAdapter();
+
         RecyclerView recycler = viewFragment.findViewById(R.id.tendencias_recyclerView);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(mContext));
 
-        TrendViewModel trendiewModel=  new ViewModelProviders().of(this).get(TrendViewModel.class);
-        trendiewModel.initData();
-        trendiewModel.getTrendList().observe(this, new Observer<List<Trend>>() {
-            @Override
-            public void onChanged(@Nullable List<Trend> trends) {
-                if(trends != null)
-                adapter.setTrendList(trends);
-            }
-        });
-
         return viewFragment;
+
     }
 
 }
