@@ -8,19 +8,21 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.whispcorp.whispme.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WorldFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     Context mContext;
-    public WorldFragment() {
-        // Required empty public constructor
+    public ProfileFragment() {
+
     }
 
     @Override
@@ -31,15 +33,12 @@ public class WorldFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewFragment =  inflater.inflate(R.layout.fragment_world, container, false);
-        Toolbar toolbar = (Toolbar) viewFragment.findViewById(R.id.toolbar_notification);
 
-        toolbar.setTitle("Cuenta");
-        toolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(toolbar);
-        return viewFragment;
+        RelativeLayout profileRelativeLayout = view.findViewById(R.id.profileRelativeLayout);
+
+        return view;
     }
 
 }

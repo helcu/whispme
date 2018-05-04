@@ -1,7 +1,16 @@
 package com.whispcorp.whispme.database.entities;
 
+import com.google.gson.JsonArray;
+import com.whispcorp.whispme.util.Constants;
+import com.whispcorp.whispme.util.CustomMethod;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Trend {
 
@@ -64,8 +73,29 @@ public class Trend {
 
     public String getTimeAsString(){
 
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat(Constants.DateFormat.TRENDFORMAT);
         return simpleDate.format(this.time);
 
+    }
+
+    public static List<Trend> getListFromJson(JSONArray array){
+            List<Trend> lst = new ArrayList<>();
+            Trend trendObj;
+            for(int i =0; i<array.length();i++){
+                trendObj = new Trend();
+                try {
+                    trendObj.setUserName(array.getJSONObject(i).getJSONObject("owner").getString("username"));
+                    trendObj.setTitle(array.getJSONObject(i).getString("title"));
+                    trendObj.setPlace(array.getJSONObject(i).getString("place"));
+                    trendObj.setLikes(array.getJSONObject(i).getJSONObject("meta").getInt("likes"));
+                    trendObj.setTime(CustomMethod.StringToDate(array.getJSONObject(i).getString("update")));
+                    lst.add(trendObj);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            return lst;
     }
 }

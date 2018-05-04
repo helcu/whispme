@@ -29,9 +29,10 @@ public class TrendRecyclerAdapter extends RecyclerView.Adapter<TrendRecyclerAdap
 
         holder.title.setText(trendList.get(position).getTitle());
         holder.place.setText(trendList.get(position).getPlace());
-        holder.time .setText(trendList.get(position).getTimeAsString());
+       // holder.time .setText(trendList.get(position).getTimeAsString());
         holder.userName.setText(trendList.get(position).getUserName());
-        holder.likeNUmber.setText(trendList.get(position).getLikes());
+        holder.likeNUmber.setText(String.valueOf(trendList.get(position).getLikes()));
+        holder.profile.setImageUrl("https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png");
 
     }
 
@@ -60,5 +61,14 @@ public class TrendRecyclerAdapter extends RecyclerView.Adapter<TrendRecyclerAdap
             userName = itemView.findViewById(R.id.userName_trend);
             likeNUmber = itemView.findViewById(R.id.likesNumber_trend);
         }
+    }
+
+    public List<Trend> getTrendList() {
+        return trendList;
+    }
+
+    public void setTrendList(List<Trend> trendList) {
+        this.trendList = trendList;
+        notifyDataSetChanged();
     }
 }
