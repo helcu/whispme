@@ -59,10 +59,12 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     private LocationService mLocationService;
     private ServiceConnection mServiceConnection;
     private BroadcastReceiver mBroadcastReceiver;
+    public static Double LATITUDE;
+    public static Double LONGITUDE;
     private boolean bound = false;
 
     private boolean isRequestingLocationPermission = false;
-    private boolean hasShownRequestLocationPermissionRationale = false;
+    private static boolean hasShownRequestLocationPermissionRationale = false;
     public static boolean hasRequestedSettingLocation = false;
     private String TAG = "GGx MapMenuFragment";
 
@@ -129,6 +131,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Log.d("GGx", "onMapReady");
         mMap = googleMap;
 
         mMap.getUiSettings().setZoomControlsEnabled(false);
@@ -164,24 +167,17 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
         });
 
 
-        updateDefaultPosition();
-
-        Log.d("GGx", "onMapReady");
         if (!isRequestingLocationPermission && runtimePermissions()) {
             startLocationService();
+        } else {
+            updateDefaultPosition();
         }
     }
 
     @Override
     public void onResume() {
-        super.onResume();
-
         Log.d("GGx", "onResume");
-        if (!isRequestingLocationPermission && mMap != null) {
-            if (runtimePermissions()) {
-                startLocationService();
-            }
-        }
+        super.onResume();
     }
 
 
@@ -189,24 +185,29 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     public void onStart() {
         Log.d("GGx", "onStart");
         super.onStart();
+        if (!isRequestingLocationPermission && mMap != null) {
+            if (runtimePermissions()) {
+                startLocationService();
+            }
+        }
     }
 
     @Override
     public void onStop() {
         Log.d("GGx", "onStop");
         super.onStop();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        Log.d("GGx", "onPause");
         stopLocationService();
     }
 
     @Override
+    public void onPause() {
+        Log.d("GGx", "onPause");
+        super.onPause();
+    }
+
+    @Override
     public void onDestroy() {
+        Log.d("GGx", "onDestroy");
         super.onDestroy();
         stopLocationService();
     }
@@ -215,7 +216,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        Log.d("GGx", "MapMenu: onRequestPermissionsResult");
+        Log.d("GGx", "MapMenu: onRequestPermissionsResult: request: " + requestCode + " result: " + grantResults[0]);
 
         if (requestCode == Constants.RequestCode.LOCATION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
@@ -232,7 +233,8 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                     mContext.sendBroadcast(intent);*/
                 }
             } else {
-                runtimePermissions();
+                //runtimePermissions();
+                Toast.makeText(mContext, "Whispme funcionará de forma limitada.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -272,12 +274,12 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                 public void onReceive(Context context, Intent intent) {
                     Bundle extras = intent.getExtras();
                     if (extras != null) {
-                        double latitude = intent.getExtras().getDouble(Constants.Extra.LATITUDE);
-                        double longitude = intent.getExtras().getDouble(Constants.Extra.LONGITUDE);
-                        LatLng position = new LatLng(latitude, longitude);
+                        LATITUDE = intent.getExtras().getDouble(Constants.Extra.LATITUDE);
+                        LONGITUDE = intent.getExtras().getDouble(Constants.Extra.LONGITUDE);
+                        LatLng position = new LatLng(LATITUDE, LONGITUDE);
                         updateCurrentPosition(position);
 
-                        Toast.makeText(context, "(" + latitude + ", " + longitude + ")", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "(" + LATITUDE + ", " + LONGITUDE + ")", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "(SIN GPS)", Toast.LENGTH_SHORT).show();
                     }

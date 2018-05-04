@@ -48,6 +48,10 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation "cz.intik:overflow-pager-indicator:1.2.1"
 
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:15.0.0'
+    implementation 'com.google.firebase:firebase-storage:15.0.0'
+
     // Animations
     implementation 'com.airbnb.android:lottie:2.5.1'
 
@@ -76,4 +80,9 @@ dependencies {
 
     //Diagonal Layout
     implementation 'com.github.florent37:diagonallayout:1.0.7'
+
+    // Voice recorder
+    implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

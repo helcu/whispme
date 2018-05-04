@@ -39,35 +39,31 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordEditText = findViewById(R.id.password);
 
         loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (usernameEditText.getText().toString().equals("admin")) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else
+        loginButton.setOnClickListener(view -> {
+            if (usernameEditText.getText().toString().equals("admin")) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            } else
                 WhispRemoteProvider.login(usernameEditText.getText().toString(), passwordEditText.getText().toString(),
                         new WhispRemoteProvider.ProviderRequestListener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject entities) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
+                            @Override
+                            public void onResponse(JSONObject entities) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(intent);
+                                finish();
+                            }
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+                            @Override
+                            public void onError(String message) {
+                                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                            }
+                        });
         });
 
         TextView registerTextView = findViewById(R.id.registerTextView);
-        registerTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+        registerTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
     }
 
 }

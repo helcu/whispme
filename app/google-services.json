@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "537347801852",
+    "firebase_url": "https://whispme-1495178438890.firebaseio.com",
+    "project_id": "whispme-1495178438890",
+    "storage_bucket": "whispme-1495178438890.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537347801852:android:60d8f2f344305c74",
+        "android_client_info": {
+          "package_name": "com.whispcorp.whispme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537347801852-rd9m6r2shvr3v29f8tkasjem3bu6f1h7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBIFL8kE2GwUNl_HpUVpp3aId2JrvHRr8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537347801852:android:3a836ac948049cf7",
+        "android_client_info": {
+          "package_name": "com.whisper.whispme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537347801852-rd9m6r2shvr3v29f8tkasjem3bu6f1h7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBIFL8kE2GwUNl_HpUVpp3aId2JrvHRr8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
