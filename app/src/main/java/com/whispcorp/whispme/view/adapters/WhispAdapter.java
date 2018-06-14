@@ -48,7 +48,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
         //holder.itemView.setBackgroundColor(color);
         Whisp whisp = whisps.get(position);
         holder.titleTextView.setText(whisp.getTitle());
-        holder.contentTextView.setText(whisp.getContent());
+        holder.contentTextView.setText(whisp.getContent().substring(0, 5));
         holder.playButton.setOnClickListener(v -> {
             try {
                 String url = whisp.getContent();

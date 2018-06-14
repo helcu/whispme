@@ -7,6 +7,7 @@ import com.whispcorp.whispme.database.entities.User;
 import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.network.ApiProvider;
 import com.whispcorp.whispme.network.apiService.WhispService;
+import com.whispcorp.whispme.network.modelService.BaseResponse;
 import com.whispcorp.whispme.network.modelService.OwnerResponse;
 import com.whispcorp.whispme.network.modelService.whispService.WhispLocResponse;
 import com.whispcorp.whispme.network.modelService.whispService.WhispResponse;
@@ -27,12 +28,21 @@ public class WhispViewModel extends ViewModel {
     public void initData() {
         service = ApiProvider.getWhispService();
 
-        service.getWhisps().enqueue(new Callback<List<WhispLocResponse>>() {
+        service.getWhisps().enqueue(new Callback<BaseResponse<List<WhispLocResponse>>>() {
             @Override
-            public void onResponse(Call<List<WhispLocResponse>> call, Response<List<WhispLocResponse>> response) {
+            public void onResponse(Call<BaseResponse<List<WhispLocResponse>>> call,
+                                   Response<BaseResponse<List<WhispLocResponse>>> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                if (response.body().getStatus() != 200) {
+                    return;
+                }
 
                 List<Whisp> list = new ArrayList<>();
-                for (WhispLocResponse whispResponse : response.body()) {
+                for (WhispLocResponse whispResponse : response.body().getData()) {
 
                     try {
                         Whisp whisp = new Whisp();
@@ -72,7 +82,7 @@ public class WhispViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<List<WhispLocResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<List<WhispLocResponse>>> call, Throwable t) {
 
             }
         });
