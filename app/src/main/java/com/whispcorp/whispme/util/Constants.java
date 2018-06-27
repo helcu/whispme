@@ -58,5 +58,13 @@ public class Constants {
 
     }
 
+    public static class SharedPreferencesConstant {
+        public final static String USER_ID = "user_id";
+        public final static String USER_EMAIL = "user_email";
+        public final static String USER_NAME = "user_name";
+        public final static String USER_PHOTO = "user_photo";
+        public final static String USER_BIO = "user_bio";
+    }
+
 
 }

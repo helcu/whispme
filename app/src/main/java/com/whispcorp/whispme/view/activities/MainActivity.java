@@ -25,6 +25,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.franmontiel.fullscreendialog.FullScreenDialogFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -237,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
 
         textFab.setOnClickListener(view -> {
             //Toast.makeText(MainActivity.this, "textFab", Toast.LENGTH_SHORT).show();
-            toggleFabsVisibility();
+
+
         });
 
         photoFab.setOnClickListener(view -> {

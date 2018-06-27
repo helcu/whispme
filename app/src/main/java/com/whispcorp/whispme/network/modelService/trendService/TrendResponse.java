@@ -2,21 +2,25 @@ package com.whispcorp.whispme.network.modelService.trendService;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.whispcorp.whispme.network.modelService.OwnerResponse;
 
 public class TrendResponse {
 
-    @SerializedName("cordenate")
-    @Expose
-    private CoordenateResponse cordenate;
     @SerializedName("meta")
     @Expose
     private MetaResponse meta;
+    @SerializedName("update")
+    @Expose
+    private String update;
     @SerializedName("_id")
     @Expose
     private String id;
+    @SerializedName("cordenate")
+    @Expose
+    private CoordenateResponse cordenate;
     @SerializedName("owner")
     @Expose
-    private String owner;
+    private OwnerResponse owner;
     @SerializedName("typewhisp")
     @Expose
     private String typewhisp;
@@ -30,20 +34,20 @@ public class TrendResponse {
     @Expose
     private Integer v;
 
-    public CoordenateResponse getCordenate() {
-        return cordenate;
-    }
-
-    public void setCordenate(CoordenateResponse cordenate) {
-        this.cordenate = cordenate;
-    }
-
     public MetaResponse getMeta() {
         return meta;
     }
 
     public void setMeta(MetaResponse meta) {
         this.meta = meta;
+    }
+
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
     }
 
     public String getId() {
@@ -54,11 +58,19 @@ public class TrendResponse {
         this.id = id;
     }
 
-    public String getOwner() {
+    public CoordenateResponse getCordenate() {
+        return cordenate;
+    }
+
+    public void setCordenate(CoordenateResponse cordenate) {
+        this.cordenate = cordenate;
+    }
+
+    public OwnerResponse getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(OwnerResponse owner) {
         this.owner = owner;
     }
 

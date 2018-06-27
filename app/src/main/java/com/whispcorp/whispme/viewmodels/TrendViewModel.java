@@ -32,7 +32,7 @@ import retrofit2.Response;
 
 public class TrendViewModel extends ViewModel {
 
-    private MutableLiveData<List<Trend>> trendList = new MutableLiveData<>();
+    private MutableLiveData<List<Trend>> trendList = new MutableLiveData<List<Trend>>();
 
     TrendService service = null;
     public void initData(){
@@ -90,7 +90,7 @@ public class TrendViewModel extends ViewModel {
     public TrendViewModel (){
     //puede haber application como parametro
 
-        WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
+        /*WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
             @Override
             public void onResponse( MutableLiveData<List<Trend>> response) {
                 Log.d("LLAMADADEOBERSERRRRRRR", "trajo data constructor");
@@ -104,7 +104,7 @@ public class TrendViewModel extends ViewModel {
 
             }
 
-        });
+        });*/
 
 
     }
