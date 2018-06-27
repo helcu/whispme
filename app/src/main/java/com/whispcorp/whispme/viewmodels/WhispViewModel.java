@@ -88,6 +88,69 @@ public class WhispViewModel extends ViewModel {
         });
     }
 
+    public void initData(Double latitude, Double longitude) {
+        service = ApiProvider.getWhispService();
+
+        service.getWhisps(latitude, longitude).enqueue(new Callback<BaseResponse<List<WhispLocResponse>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<WhispLocResponse>>> call,
+                                   Response<BaseResponse<List<WhispLocResponse>>> response) {
+
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                if (response.body().getStatus() != 200) {
+                    return;
+                }
+
+                List<Whisp> list = new ArrayList<>();
+                for (WhispLocResponse whispResponse : response.body().getData()) {
+
+                    try {
+                        Whisp whisp = new Whisp();
+                        whisp.setServerId(whispResponse.getId());
+                        whisp.setLongitude(whispResponse.getLoc().get(0));
+                        whisp.setLatitude(whispResponse.getLoc().get(1));
+                        /*whisp.setLongitude(whispResponse.getCordenate().getLongitude());
+                        whisp.setLatitude(whispResponse.getCordenate().getLatitude());
+
+                        OwnerResponse ownerResponse = whispResponse.getOwner();
+                        User owner = new User();
+                        owner.setServerId(ownerResponse.getId());
+                        owner.setUsername(ownerResponse.getUsername());
+                        owner.setBio(ownerResponse.getBio());
+                        owner.setEmail(ownerResponse.getEmail());
+                        owner.setPhoto(ownerResponse.getPhoto());
+                        owner.setFollowers(ownerResponse.getFollowers());
+                        owner.setFollowing(ownerResponse.getFollowers());
+                        whisp.setOwner(owner);
+                        whisp.setOwnerServerId(ownerResponse.getId());*/
+
+                        whisp.setTitle(whispResponse.getTitle());
+                        whisp.setContent(whispResponse.getContent());
+                        whisp.setType(whispResponse.getTypewhisp());
+
+                        whisp.setLikes(whispResponse.getMeta().getLikes());
+                        whisp.setViews(whispResponse.getMeta().getViews());
+                        whisp.setComments(whispResponse.getMeta().getComments());
+
+                        list.add(whisp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                whispMutableList.postValue(list);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<List<WhispLocResponse>>> call, Throwable t) {
+
+            }
+        });
+    }
+
     public MutableLiveData<List<Whisp>> getWhispMutableList() {
         return whispMutableList;
     }

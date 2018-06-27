@@ -15,7 +15,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                 parentColumns = "id",
                 childColumns = "serverId",
                 onDelete = CASCADE))
-public class Whisp {
+    public class Whisp {
 
     public static final String TB_WHISP = "Whisp";
 

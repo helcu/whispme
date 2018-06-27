@@ -48,7 +48,6 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation "cz.intik:overflow-pager-indicator:1.2.1"
 
-
     //retrofit
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'

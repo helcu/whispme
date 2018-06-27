@@ -33,6 +33,7 @@ public class WhispListDialogFragment extends DialogFragment {
     LinearLayoutManager layoutManager;
     OverflowPagerIndicator overflowPagerIndicator;
     boolean seAsignoLayout = false;
+    int position = -1;
 
     public WhispListDialogFragment() {
         adapter = new WhispAdapter();
@@ -51,16 +52,19 @@ public class WhispListDialogFragment extends DialogFragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         overflowPagerIndicator = view.findViewById(R.id.view_pager_indicator);
 
-        if (!seAsignoLayout) {
+        /*if (!seAsignoLayout) {
             layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(layoutManager);
             seAsignoLayout = true;
-        }
-
+        }*/
         recyclerView.setAdapter(adapter);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        layoutManager.scrollToPosition(position);
 
         overflowPagerIndicator.attachToRecyclerView(recyclerView);
         new SimpleSnapHelper(overflowPagerIndicator).attachToRecyclerView(recyclerView);
+        overflowPagerIndicator.onPageSelected(position);
 
         return view;
     }
@@ -85,17 +89,17 @@ public class WhispListDialogFragment extends DialogFragment {
     }
 
     public void customShow(Whisp whisp, FragmentManager manager, String tag) {
+        position = adapter.getWhispPosition(whisp);
         show(manager, tag);
-
-        int position = adapter.getWhispPosition(whisp);
-        if (position != -1) {
+        /*if (position != -1) {
             if (layoutManager != null) {
                 layoutManager.scrollToPosition(position);
-                if (overflowPagerIndicator != null) {
-                    overflowPagerIndicator.onPageSelected(position);
-                }
+            } else {
+                layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(layoutManager);
+                seAsignoLayout = true;
             }
-        }
+        }*/
     }
 }
 

@@ -22,7 +22,7 @@ public class Constants {
     }
 
     public static class UpdateTime {
-        public final static int LOCATION = 60000;
+        public final static int LOCATION = 10000;
     }
 
     public static class Default {
@@ -66,5 +66,12 @@ public class Constants {
         public final static String USER_BIO = "user_bio";
     }
 
-
+    public static class Whisp {
+        public final static String TYPE_TEXT = "text";
+        public final static int TYPE_TEXT_VALUE = 1;
+        public final static String TYPE_AUDIO = "audio";
+        public final static int TYPE_AUDIO_VALUE = 2;
+        public final static String TYPE_PHOTO = "photo";
+        public final static int TYPE_PHOTO_VALUE = 3;
+    }
 }

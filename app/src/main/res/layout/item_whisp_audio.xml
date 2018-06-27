@@ -33,14 +33,24 @@
             android:contentDescription="Imagen"
             android:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/contentTextView"
-            android:layout_width="wrap_content"
+
+
+        <SeekBar
+            android:id="@+id/whispSeekBar"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Texto Largo: Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum." />
+            android:layout_margin="12dp"
+            android:thumb="@drawable/red_scrubber_control"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Play" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
