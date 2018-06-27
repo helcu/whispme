@@ -35,6 +35,7 @@ import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
 import com.whispcorp.whispme.R;
+import com.whispcorp.whispme.database.entities.User;
 import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.util.Constants;
 import com.whispcorp.whispme.util.SharedPreferencesUtil;
@@ -342,7 +343,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("ggx", "URL: (AFTER) " + downloadUrl.toString());
 
                         Whisp whisp = new Whisp();
-                        whisp.setOwner(1);
+                        whisp.setOwner(new User());
+                        whisp.setOwnerServerId("");
                         whisp.setType("audio");
                         whisp.setContent(downloadUrl.toString());
                         whisp.setTitle("My Whisp");

@@ -1,20 +1,22 @@
-package com.whispcorp.whispme.network.modelService.trendService;
+package com.whispcorp.whispme.network.modelService;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class MetaResponse {
 
-
     @SerializedName("likes")
     @Expose
     private Integer likes;
+
     @SerializedName("views")
     @Expose
     private Integer views;
+
     @SerializedName("comments")
     @Expose
     private Integer comments;
+
 
     public Integer getLikes() {
         return likes;

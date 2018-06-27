@@ -2,7 +2,10 @@ package com.whispcorp.whispme.database.entities;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import java.security.acl.Owner;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -10,7 +13,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = Whisp.TB_WHISP,
         foreignKeys = @ForeignKey(entity = User.class,
                 parentColumns = "id",
-                childColumns = "owner",
+                childColumns = "serverId",
                 onDelete = CASCADE))
 public class Whisp {
 
@@ -20,7 +23,9 @@ public class Whisp {
     private Integer id;
 
     private String serverId;
-    private Integer owner;
+    private String ownerServerId;
+    @Ignore
+    private User owner;
     private String type;
     private String content;
     private String title;
@@ -30,12 +35,14 @@ public class Whisp {
     private Integer views;
     private Integer comments;
 
+
     public Whisp() {
     }
 
-    public Whisp(Integer id, String serverId, Integer owner, String type, String content, String title, Double latitude, Double longitude, Integer likes, Integer views, Integer comments) {
+    public Whisp(Integer id, String serverId, String ownerServerId, User owner, String type, String content, String title, Double latitude, Double longitude, Integer likes, Integer views, Integer comments) {
         this.id = id;
         this.serverId = serverId;
+        this.ownerServerId = ownerServerId;
         this.owner = owner;
         this.type = type;
         this.content = content;
@@ -63,11 +70,19 @@ public class Whisp {
         this.serverId = serverId;
     }
 
-    public Integer getOwner() {
+    public String getOwnerServerId() {
+        return ownerServerId;
+    }
+
+    public void setOwnerServerId(String ownerId) {
+        this.ownerServerId = ownerId;
+    }
+
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(Integer owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 
