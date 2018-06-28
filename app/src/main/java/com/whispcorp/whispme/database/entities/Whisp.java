@@ -5,6 +5,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.security.acl.Owner;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -15,7 +16,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                 parentColumns = "id",
                 childColumns = "serverId",
                 onDelete = CASCADE))
-public class Whisp {
+public class Whisp implements Serializable {
 
     public static final String TB_WHISP = "Whisp";
 

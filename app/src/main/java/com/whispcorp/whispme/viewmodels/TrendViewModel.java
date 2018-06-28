@@ -15,6 +15,7 @@ import com.whispcorp.whispme.network.ApiProvider;
 import com.whispcorp.whispme.network.WhispRemoteProvider;
 import com.whispcorp.whispme.network.apiService.TrendService;
 import com.whispcorp.whispme.network.apiService.UserService;
+import com.whispcorp.whispme.network.modelService.BaseResponse;
 import com.whispcorp.whispme.network.modelService.trendService.TrendResponse;
 import com.whispcorp.whispme.repositories.WhispRepository;
 import com.whispcorp.whispme.view.activities.LoginActivity;
@@ -32,20 +33,20 @@ import retrofit2.Response;
 
 public class TrendViewModel extends ViewModel {
 
-    private MutableLiveData<List<Trend>> trendList = new MutableLiveData<>();
+    private MutableLiveData<List<Trend>> trendList = new MutableLiveData<List<Trend>>();
 
     TrendService service = null;
     public void initData(){
 
         service = ApiProvider.getTrendService();
 
-        service.getTrends().enqueue(new Callback<List<TrendResponse>>() {
+        service.getTrends().enqueue(new Callback<BaseResponse<List<TrendResponse>>>() {
             @Override
-            public void onResponse(Call<List<TrendResponse>> call, Response<List<TrendResponse>>
+            public void onResponse(Call<BaseResponse<List<TrendResponse>>> call, Response<BaseResponse<List<TrendResponse>>>
                     response) {
 
                     List<Trend> list =  new ArrayList<>();
-                    for (TrendResponse obj : response.body() ){
+                    for (TrendResponse obj : response.body().getData() ){
 
                         Trend item = new Trend();
                         item.setUserName("uknow");
@@ -63,7 +64,7 @@ public class TrendViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<List<TrendResponse>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<List<TrendResponse>>> call, Throwable t) {
 
             }
         });
@@ -90,7 +91,7 @@ public class TrendViewModel extends ViewModel {
     public TrendViewModel (){
     //puede haber application como parametro
 
-        WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
+        /*WhispRemoteProvider.getTrends(new WhispRemoteProvider.ProviderRequestListener< MutableLiveData<List<Trend>>>() {
             @Override
             public void onResponse( MutableLiveData<List<Trend>> response) {
                 Log.d("LLAMADADEOBERSERRRRRRR", "trajo data constructor");
@@ -104,7 +105,7 @@ public class TrendViewModel extends ViewModel {
 
             }
 
-        });
+        });*/
 
 
     }

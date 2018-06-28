@@ -15,27 +15,21 @@ public class TrendResponse {
     @SerializedName("meta")
     @Expose
     private MetaResponse meta;
-
     @SerializedName("_id")
     @Expose
     private String id;
-
     @SerializedName("owner")
     @Expose
     private OwnerResponse owner;
-
     @SerializedName("typewhisp")
     @Expose
     private String typewhisp;
-
     @SerializedName("content")
     @Expose
     private String content;
-
     @SerializedName("title")
     @Expose
     private String title;
-
     @SerializedName("__v")
     @Expose
     private Integer v;

@@ -56,7 +56,8 @@ public class NotificationFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
             trendiewModel =  new ViewModelProviders().of(this).get(TrendViewModel.class);
 
-        trendiewModel.initData();
+
+
 
         trendiewModel.getTrendList().observe(this, new Observer<List<Trend>>() {
             @Override
@@ -65,6 +66,8 @@ public class NotificationFragment extends Fragment {
                 adapter.setTrendList(trends);
             }
         });
+
+        trendiewModel.initData();
 
     }
 
