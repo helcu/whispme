@@ -16,8 +16,11 @@ public interface UserService {
     @GET("category")
     Call<Integer> getCategory();
 
-
     @POST("user/login")
     @FormUrlEncoded
     Call<BaseResponse<OwnerResponse>> loginUser(@Field("username") String username, @Field("password") String password);
+
+    @POST("user/follow")
+    @FormUrlEncoded
+    Call<BaseResponse<OwnerResponse>> followUser(@Field("user") String userId, @Field("followed") String followedId);
 }

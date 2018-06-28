@@ -73,16 +73,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".view.activities.FullscreenImageActivity"></activity>
-        <activity android:name=".view.activities.CommentsActivity"></activity>
-        <activity android:name=".view.activities.CameraActivity"
+        <activity android:name=".view.activities.FullscreenImageActivity" />
+        <activity android:name=".view.activities.CommentsActivity" />
+        <activity
+            android:name=".view.activities.CameraActivity"
             android:parentActivityName=".view.activities.MainActivity"
             android:theme="@style/AppThemeBarTransparent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.whispcorp.whispme.view.activities.MainActivity" />
-
         </activity>
+        <activity android:name=".view.activities.UserProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,10 @@
 package com.whispcorp.whispme.view.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,9 +20,9 @@ import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.util.Constants;
 import com.whispcorp.whispme.view.activities.CommentsActivity;
 import com.whispcorp.whispme.view.activities.FullscreenImageActivity;
+import com.whispcorp.whispme.view.activities.UserProfileActivity;
 import com.whispcorp.whispme.view.adapters.WhispAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cz.intik.overflowindicator.OverflowPagerIndicator;
@@ -42,16 +40,23 @@ public class WhispListDialogFragment extends DialogFragment {
     public WhispListDialogFragment() {
         adapter = new WhispAdapter(new WhispAdapter.WhispAdapterClickListener() {
             @Override
-            public void photoClicked(Whisp whisp) {
+            public void onPhotoClicked(Whisp whisp) {
                 Intent intent = new Intent(getContext(), FullscreenImageActivity.class);
-                intent.putExtra(Constants.Extra.WHISPADAPTER_FULLSCREENIMAGE, whisp);
+                intent.putExtra(Constants.Extra.MAIN_FULLSCREENIMAGE, whisp);
                 startActivity(intent);
             }
 
             @Override
-            public void commentClicked(Whisp whisp) {
+            public void onCommentClicked(Whisp whisp) {
                 Intent intent = new Intent(getContext(), CommentsActivity.class);
                 intent.putExtra(Constants.Extra.MAIN_COMMENTS, whisp);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onProfileCircle(Whisp whisp) {
+                Intent intent = new Intent(getContext(), UserProfileActivity.class);
+                intent.putExtra(Constants.Extra.MAIN_USERPROFILE, whisp);
                 startActivity(intent);
             }
         });

@@ -20,6 +20,8 @@ import com.whispcorp.whispme.util.Constants;
 import java.io.IOException;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHolder> {
 
     private List<Whisp> whisps;
@@ -74,9 +76,12 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
         holder.viewsTextView.setText(whisp.getViews() + " views");
         holder.commentsTextView.setText(whisp.getComments() + " comments");
         holder.commentsTextView.setOnClickListener(v -> {
-            clickListener.commentClicked(whisp);
+            clickListener.onCommentClicked(whisp);
         });
 
+        holder.profileCircleImageView.setOnClickListener(v -> {
+            clickListener.onProfileCircle(whisp);
+        });
 
         switch (whisp.getType()) {
             case Constants.Whisp.TYPE_TEXT:
@@ -151,7 +156,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
                         .centerCrop()
                         .into(holder.photoImageView);
                 holder.photoImageView.setOnClickListener(v -> {
-                    clickListener.photoClicked(whisp);
+                    clickListener.onPhotoClicked(whisp);
                 });
                 break;
         }
@@ -187,6 +192,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
         Handler handler = new Handler();
         Runnable updateTime;
         ImageView photoImageView;
+        CircleImageView profileCircleImageView;
 
         WhispViewHolder(View view) {
             super(view);
@@ -198,12 +204,15 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
             likesTextView = view.findViewById(R.id.likesTextView);
             viewsTextView = view.findViewById(R.id.viewsTextView);
             commentsTextView = view.findViewById(R.id.commentsTextView);
+            profileCircleImageView = view.findViewById(R.id.profileCircleImageView);
         }
     }
 
     public interface WhispAdapterClickListener {
-        void photoClicked(Whisp whisp);
+        void onPhotoClicked(Whisp whisp);
 
-        void commentClicked(Whisp whisp);
+        void onCommentClicked(Whisp whisp);
+
+        void onProfileCircle(Whisp whisp);
     }
 }

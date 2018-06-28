@@ -11,9 +11,10 @@ public class Constants {
     public static class Extra {
         public final static String LONGITUDE = "EXTRA_LONGITUDE";
         public final static String LATITUDE = "EXTRA_LATITUDE";
-        public final static String WHISPADAPTER_FULLSCREENIMAGE = "EXTRA_WHISPADAPTER_FULLSCREENIMAGE";
-        public final static String MAIN_COMMENTS = "MAIN_COMMENTS";
         public final static String USERNAME = "EXTRA_USERNAME";
+        public final static String MAIN_FULLSCREENIMAGE = "EXTRA_MAIN_FULLSCREENIMAGE";
+        public final static String MAIN_COMMENTS = "EXTRA_MAIN_COMMENTS";
+        public final static String MAIN_USERPROFILE = "EXTRA_MAIN_USERPROFILE";
     }
 
     public static class RequestCode {

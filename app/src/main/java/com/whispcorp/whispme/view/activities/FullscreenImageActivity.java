@@ -21,7 +21,7 @@ public class FullscreenImageActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        Whisp whisp = (Whisp) getIntent().getExtras().get(Constants.Extra.WHISPADAPTER_FULLSCREENIMAGE);
+        Whisp whisp = (Whisp) getIntent().getExtras().get(Constants.Extra.MAIN_FULLSCREENIMAGE);
 
         ImageView photoImageView = findViewById(R.id.photoImageView);
         Picasso.get()

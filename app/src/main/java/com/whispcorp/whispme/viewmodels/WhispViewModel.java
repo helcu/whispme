@@ -112,8 +112,6 @@ public class WhispViewModel extends ViewModel {
                         whisp.setServerId(whispResponse.getId());
                         whisp.setLongitude(whispResponse.getLoc().get(0));
                         whisp.setLatitude(whispResponse.getLoc().get(1));
-                        /*whisp.setLongitude(whispResponse.getCordenate().getLongitude());
-                        whisp.setLatitude(whispResponse.getCordenate().getLatitude());
 
                         OwnerResponse ownerResponse = whispResponse.getOwner();
                         User owner = new User();
@@ -125,7 +123,7 @@ public class WhispViewModel extends ViewModel {
                         owner.setFollowers(ownerResponse.getFollowers());
                         owner.setFollowing(ownerResponse.getFollowers());
                         whisp.setOwner(owner);
-                        whisp.setOwnerServerId(ownerResponse.getId());*/
+                        whisp.setOwnerServerId(ownerResponse.getId());
 
                         whisp.setTitle(whispResponse.getTitle());
                         whisp.setContent(whispResponse.getContent());
