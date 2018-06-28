@@ -286,7 +286,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                         LatLng position = new LatLng(LATITUDE, LONGITUDE);
                         updateCurrentPosition(position);
 
-                        Toast.makeText(context, "(" + LATITUDE + ", " + LONGITUDE + ")", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "(" + LATITUDE + ", " + LONGITUDE + ")", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "(SIN GPS)", Toast.LENGTH_SHORT).show();
                     }

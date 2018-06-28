@@ -138,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
-                Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 //runtimePermissions();
-                Toast.makeText(mContext, "Whispme funcionará de forma limitada.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "Whispme funcionará de forma limitada.", Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -281,14 +281,18 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(mContext)
+
+                requestPermissions(
+                        new String[]{Manifest.permission.RECORD_AUDIO},
+                        Constants.RequestCode.RECORD_AUDIO);
+                /*new AlertDialog.Builder(mContext)
                         .setCancelable(true)
                         .setTitle(Constants.Message.PERMISSION_RATIONALE_RECORD_AUDIO_TITLE)
                         .setMessage(Constants.Message.PERMISSION_RATIONALE_RECORD_AUDIO_MESSAGE)
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> requestPermissions(
                                 new String[]{Manifest.permission.RECORD_AUDIO}, // Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE
                                 Constants.RequestCode.RECORD_AUDIO))
-                        .show();
+                        .show();*/
 
             } else {
                 requestWritePermission();
@@ -299,14 +303,18 @@ public class MainActivity extends AppCompatActivity {
     public void requestWritePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(mContext)
+
+                requestPermissions(
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        Constants.RequestCode.WRITE_EXTERNAL_STORAGE);
+                /*new AlertDialog.Builder(mContext)
                         .setCancelable(true)
                         .setTitle(Constants.Message.PERMISSION_RATIONALE_WRITE_EXTERNAL_STORAGE_TITLE)
                         .setMessage(Constants.Message.PERMISSION_RATIONALE_WRITE_EXTERNAL_STORAGE_MESSAGE)
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> requestPermissions(
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, // Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE
                                 Constants.RequestCode.WRITE_EXTERNAL_STORAGE))
-                        .show();
+                        .show();*/
 
             } else {
                 recordAudio(this.getCurrentFocus());

@@ -31,7 +31,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
-
     UserService service;
 
 
@@ -80,13 +79,10 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-
                         Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos",
                                 Toast.LENGTH_SHORT)
                                 .show();
-
                     }
-
                 }
 
                 @Override
@@ -121,14 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         TextView registerTextView = findViewById(R.id.registerTextView);
         registerTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,
                 RegisterActivity.class)));
-
-
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        finish();
     }
 
 }
