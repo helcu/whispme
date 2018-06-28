@@ -58,7 +58,6 @@ public class CommentsActivity extends AppCompatActivity {
                     @Override
                     protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
                         viewHolder.commentTextView.setText(model.getContent());
-
                         // TODO: consuming and endpoint to get owner's url image
                     }
                 };
