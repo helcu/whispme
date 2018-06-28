@@ -33,10 +33,20 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SubmitDialogFragment extends DialogFragment {
 
-    String image= null;
-    Button closeButton=null;
-    Button uploadButton=null;
+    String image = null;
+    Button closeButton = null;
+    Button uploadButton = null;
     EditText title = null;
+    String type = null;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     private ProgressDialog mProgress;
 
     public String getImage() {
@@ -57,12 +67,18 @@ public class SubmitDialogFragment extends DialogFragment {
 
         View rootView = inflater.inflate(R.layout.submitdialog_fragment, container);
         previewImage = (ImageView) rootView.findViewById(R.id.preview);
-        try {
-            Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getApplicationContext()
-                    .openFileInput("myImage"));
-            previewImage.setImageBitmap(bitmap);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (type.equals("photo")) {
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getApplicationContext()
+                        .openFileInput("myImage"));
+                previewImage.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else if (type.equals("audio")) {
+
+            previewImage.setVisibility(View.GONE);
+
         }
         closeButton = rootView.findViewById(R.id.btnCancel);
         uploadButton = rootView.findViewById(R.id.btnPublish);
@@ -77,7 +93,13 @@ public class SubmitDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 try {
-                    uploadWhisp();
+                    if (type.equals("photo")) {
+                        uploadWhisp();
+                    } else if (type.equals("audio")) {
+                        uploadWhispAudio();
+
+
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -88,11 +110,45 @@ public class SubmitDialogFragment extends DialogFragment {
         mProgress = new ProgressDialog(getActivity().getApplicationContext());
 
 
-
         return rootView;
     }
 
 
+    public void uploadWhispAudio() {
+
+        //mProgress.setMessage("Creating your whisp!");
+        //mProgress.show();
+
+        StorageReference mStorage = FirebaseStorage.getInstance().getReference();
+        final String audioName = UUIDGenerator.generateId();
+        StorageReference filepath = mStorage.child("whisps_audios").child(audioName + ".mp3");
+
+        Uri recordedWhispUri = Uri.fromFile(new File(Constants.Default.WHISP_AUDIO_FILE_PATH));
+
+        filepath.putFile(recordedWhispUri)
+                .addOnSuccessListener(taskSnapshot -> {
+
+                    StorageReference storageRef = FirebaseStorage.getInstance()
+                            .getReference().child("whisps_audios/" + audioName + ".mp3");
+                    storageRef.getDownloadUrl().addOnSuccessListener(downloadUrl -> {
+                        String userId = SharedPreferencesUtil.getValue(Constants.SharedPreferencesConstant.USER_ID, "1");
+                        Log.d("ggx", "URL: (AFTER) " + downloadUrl.toString());
+                        Whisp whisp = new Whisp();
+                        whisp.setOwner(new User());
+                        whisp.setOwnerServerId("");
+                        whisp.setType("audio");
+                        whisp.setContent(downloadUrl.toString());
+                        whisp.setTitle(title.getText().toString());
+                        whisp.setLatitude(MapMenuFragment.LATITUDE);
+                        whisp.setLongitude(MapMenuFragment.LONGITUDE);
+                        ((MainActivity) getActivity()).apiUploadWhisp(whisp, userId);
+                        dismiss();
+                    }).addOnFailureListener(e ->
+                            Toast.makeText(getActivity().getApplicationContext(),
+                                    e.getMessage(),
+                                    Toast.LENGTH_SHORT).show());
+                });
+    }
 
     private void uploadWhisp() throws FileNotFoundException {
 
@@ -104,8 +160,8 @@ public class SubmitDialogFragment extends DialogFragment {
         final String audioName = UUIDGenerator.generateId();
         StorageReference filepath = mStorage.child("whisps_photos").child(audioName + ".jpg");
 
-        String file_name=getActivity().getApplicationContext().getFilesDir() + "/"+"myImage.jpg";
-        File f=new File(image, "image.jpg");
+        String file_name = getActivity().getApplicationContext().getFilesDir() + "/" + "myImage.jpg";
+        File f = new File(image, "image.jpg");
         Uri recordedWhispUri = Uri.fromFile(f);
 
         filepath.putFile(recordedWhispUri)
@@ -126,7 +182,7 @@ public class SubmitDialogFragment extends DialogFragment {
                         whisp.setTitle(title.getText().toString());
                         whisp.setLatitude(MapMenuFragment.LATITUDE);
                         whisp.setLongitude(MapMenuFragment.LONGITUDE);
-                        ((MainActivity)getActivity()).apiUploadWhisp(whisp,userId);
+                        ((MainActivity) getActivity()).apiUploadWhisp(whisp, userId);
                         dismiss();
 
                     }).addOnFailureListener(e ->
@@ -135,9 +191,6 @@ public class SubmitDialogFragment extends DialogFragment {
                                     Toast.LENGTH_SHORT).show());
                 });
     }
-
-
-
 
 
 }

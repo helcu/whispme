@@ -17,6 +17,7 @@ import android.view.WindowManager;
 
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.Whisp;
+import com.whispcorp.whispme.database.entities.firebase.FirebaseWhisp;
 import com.whispcorp.whispme.util.Constants;
 import com.whispcorp.whispme.view.activities.CommentsActivity;
 import com.whispcorp.whispme.view.activities.FullscreenImageActivity;
@@ -48,8 +49,14 @@ public class WhispListDialogFragment extends DialogFragment {
 
             @Override
             public void onCommentClicked(Whisp whisp) {
+                FirebaseWhisp firebaseWhisp = new FirebaseWhisp();
+                firebaseWhisp.setServerId(whisp.getServerId());
+                firebaseWhisp.setOwnerServerId(whisp.getOwnerServerId());
+                firebaseWhisp.setTitle(whisp.getTitle());
+                firebaseWhisp.setType(whisp.getType());
+
                 Intent intent = new Intent(getContext(), CommentsActivity.class);
-                intent.putExtra(Constants.Extra.MAIN_COMMENTS, whisp);
+                intent.putExtra(Constants.Extra.MAIN_COMMENTS, firebaseWhisp);
                 startActivity(intent);
             }
 
