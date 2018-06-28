@@ -241,7 +241,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                 }
             } else {
                 //runtimePermissions();
-                Toast.makeText(mContext, "Whispme funcionará de forma limitada.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "Whispme funcionará de forma limitada.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -286,7 +286,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                         LatLng position = new LatLng(LATITUDE, LONGITUDE);
                         updateCurrentPosition(position);
 
-                        Toast.makeText(context, "(" + LATITUDE + ", " + LONGITUDE + ")", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "(" + LATITUDE + ", " + LONGITUDE + ")", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "(SIN GPS)", Toast.LENGTH_SHORT).show();
                     }
@@ -323,9 +323,9 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                             ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
                 isRequestingLocationPermission = true;
 
-                if (!hasShownRequestLocationPermissionRationale /*&&
+                /*if (!hasShownRequestLocationPermissionRationale /*&&
                         (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) ||
-                                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION))*/) {
+                                shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION))*) {
                     hasShownRequestLocationPermissionRationale = true;
                     Log.d("GGx", "MapMenu: runtimePermissions: AlertDialog");
                     new AlertDialog.Builder(mContext)
@@ -341,7 +341,12 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                     requestPermissions(
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                             Constants.RequestCode.LOCATION);
-                }
+                }*/
+
+                Log.d("GGx", "MapMenu: runtimePermissions: requestPermissions");
+                requestPermissions(
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                        Constants.RequestCode.LOCATION);
                 return false;
             }
         }
@@ -349,7 +354,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void updateCurrentPosition(LatLng position) {
-        whispViewModel.initData();
+        whispViewModel.initData(LATITUDE, LONGITUDE);
         //mMap.clear();
 
         if (mCurrentPositionMarker != null)

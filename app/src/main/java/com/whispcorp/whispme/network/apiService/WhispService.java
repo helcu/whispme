@@ -15,4 +15,7 @@ public interface WhispService {
     @GET("whisp/")
     Call<BaseResponse<List<WhispLocResponse>>> getWhisps();
 
+    @GET("whisp/")
+    Call<BaseResponse<List<WhispLocResponse>>> getWhisps(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
+
 }

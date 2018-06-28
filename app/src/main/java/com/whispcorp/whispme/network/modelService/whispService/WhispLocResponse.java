@@ -3,6 +3,7 @@ package com.whispcorp.whispme.network.modelService.whispService;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.whispcorp.whispme.network.modelService.MetaResponse;
+import com.whispcorp.whispme.network.modelService.OwnerResponse;
 
 import java.util.List;
 
@@ -11,6 +12,10 @@ public class WhispLocResponse {
     @SerializedName("meta")
     @Expose
     private MetaResponse meta;
+
+    @SerializedName("owner")
+    @Expose
+    private OwnerResponse owner;
 
     @SerializedName("update")
     @Expose
@@ -51,6 +56,14 @@ public class WhispLocResponse {
 
     public void setMeta(MetaResponse meta) {
         this.meta = meta;
+    }
+
+    public OwnerResponse getOwner() {
+        return owner;
+    }
+
+    public void setOwner(OwnerResponse owner) {
+        this.owner = owner;
     }
 
     public String getUpdate() {

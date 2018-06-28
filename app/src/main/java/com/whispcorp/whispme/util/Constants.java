@@ -11,6 +11,9 @@ public class Constants {
     public static class Extra {
         public final static String LONGITUDE = "EXTRA_LONGITUDE";
         public final static String LATITUDE = "EXTRA_LATITUDE";
+        public final static String WHISPADAPTER_FULLSCREENIMAGE = "EXTRA_WHISPADAPTER_FULLSCREENIMAGE";
+        public final static String MAIN_COMMENTS = "MAIN_COMMENTS";
+        public final static String USERNAME = "EXTRA_USERNAME";
     }
 
     public static class RequestCode {
@@ -20,10 +23,11 @@ public class Constants {
         public final static int WRITE_EXTERNAL_STORAGE = 1114;
         public final static int WHISP_RECORDED_AUDIO = 1115;
         public final static int WHISP_TAKE_PHOTO = 1116;
+        public final static int LOGIN_REGISTER = 1117;
     }
 
     public static class UpdateTime {
-        public final static int LOCATION = 60000;
+        public final static int LOCATION = 10000;
     }
 
     public static class Default {

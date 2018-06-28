@@ -1,27 +1,39 @@
 {
   "project_info": {
-    "project_number": "537347801852",
-    "firebase_url": "https://whispme-1495178438890.firebaseio.com",
-    "project_id": "whispme-1495178438890",
-    "storage_bucket": "whispme-1495178438890.appspot.com"
+    "project_number": "123319224926",
+    "firebase_url": "https://whispme-98871.firebaseio.com",
+    "project_id": "whispme-98871",
+    "storage_bucket": "whispme-98871.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:537347801852:android:60d8f2f344305c74",
+        "mobilesdk_app_id": "1:123319224926:android:60d8f2f344305c74",
         "android_client_info": {
           "package_name": "com.whispcorp.whispme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "537347801852-rd9m6r2shvr3v29f8tkasjem3bu6f1h7.apps.googleusercontent.com",
+          "client_id": "123319224926-ad7f5ge0cp9pft5pn9l192jrpt1cbdvt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whispcorp.whispme",
+            "certificate_hash": "0c33445852eb09fe094e86b58f6f4ec3275de6d2"
+          }
+        },
+        {
+          "client_id": "123319224926-8737h629308a2au3pne5gh538r6hn988.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "123319224926-8737h629308a2au3pne5gh538r6hn988.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCBIFL8kE2GwUNl_HpUVpp3aId2JrvHRr8"
+          "current_key": "AIzaSyABIYpzQc8xgUfAzG6RcEWW6J__sroLaTI"
         }
       ],
       "services": {
@@ -29,39 +41,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:537347801852:android:3a836ac948049cf7",
-        "android_client_info": {
-          "package_name": "com.whisper.whispme"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "537347801852-rd9m6r2shvr3v29f8tkasjem3bu6f1h7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCBIFL8kE2GwUNl_HpUVpp3aId2JrvHRr8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123319224926-8737h629308a2au3pne5gh538r6hn988.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

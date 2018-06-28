@@ -1,5 +1,6 @@
 package com.whispcorp.whispme.view.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,8 +32,9 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Context mContext = this;
+    private EditText usernameEditText, passwordEditText;
     private Button loginButton;
-
     UserService service;
 
 
@@ -47,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
-        EditText usernameEditText = findViewById(R.id.username);
-        EditText passwordEditText = findViewById(R.id.password);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
 
         service = ApiProvider.getUserService();
 
@@ -81,13 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-
                         Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos",
                                 Toast.LENGTH_SHORT)
                                 .show();
-
                     }
-
                 }
 
                 @Override
@@ -120,10 +119,29 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         TextView registerTextView = findViewById(R.id.registerTextView);
-        registerTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,
-                RegisterActivity.class)));
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
+            startActivityForResult(intent, Constants.RequestCode.LOGIN_REGISTER);
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Constants.RequestCode.LOGIN_REGISTER:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        String username = data.getStringExtra(Constants.Extra.USERNAME);
+                        usernameEditText.setText(username);
+                        passwordEditText.setFocusable(true);
+                        break;
+                    case RESULT_CANCELED:
+                        break;
+                }
+                break;
+
+        }
+    }
 }
 
 
