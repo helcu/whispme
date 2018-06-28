@@ -213,10 +213,10 @@ public class MainActivity extends AppCompatActivity {
         notificationFragmentAdapter = new NotificationFragment();
         userFragmentAdapter = new UserFragment();
         profileFragmentAdapter = new ProfileFragment();
-        adapter.addFragment(map_menu_rag);
-        adapter.addFragment(notificationFragmentAdapter);
-        adapter.addFragment(userFragmentAdapter);
-        adapter.addFragment(profileFragmentAdapter);
+        adapter.addFragment(map_menu_rag, null);
+        adapter.addFragment(notificationFragmentAdapter, null);
+        adapter.addFragment(userFragmentAdapter, null);
+        adapter.addFragment(profileFragmentAdapter, null);
         viewPager.setAdapter(adapter);
     }
 
