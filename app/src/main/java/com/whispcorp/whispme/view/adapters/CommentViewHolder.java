@@ -9,8 +9,8 @@ import com.whispcorp.whispme.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentViewHolder extends RecyclerView.ViewHolder {
-    private CircleImageView profileCircleImageView;
-    private TextView commentTextView;
+    public CircleImageView profileCircleImageView;
+    public TextView commentTextView;
 
     public CommentViewHolder(View itemView) {
         super(itemView);
