@@ -49,7 +49,6 @@ dependencies {
     implementation "cz.intik:overflow-pager-indicator:1.2.1"
 
     //retrofit
-
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
@@ -89,8 +88,8 @@ dependencies {
     // Voice recorder
     implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
 
-    //dialog full
-    implementation 'com.github.franmontiel:FullScreenDialog:1.0.1'
+    // Picasso: Image downloading and caching
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 apply plugin: 'com.google.gms.google-services'

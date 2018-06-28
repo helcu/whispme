@@ -11,6 +11,7 @@ public class Constants {
     public static class Extra {
         public final static String LONGITUDE = "EXTRA_LONGITUDE";
         public final static String LATITUDE = "EXTRA_LATITUDE";
+        public final static String WHISPADAPTER_FULLSCREENIMAGE = "EXTRA_WHISPADAPTER_FULLSCREENIMAGE";
     }
 
     public static class RequestCode {

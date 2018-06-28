@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.util.Constants;
@@ -22,7 +24,12 @@ import java.util.List;
 public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHolder> {
 
     private List<Whisp> whisps;
+    WhispAdapterClickListener clickListener;
 
+
+    public WhispAdapter(WhispAdapterClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public int getWhispPosition(Whisp whisp) {
         int index = -1;
@@ -37,6 +44,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
 
     public void setWhisps(List<Whisp> whisps) {
         this.whisps = whisps;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -51,7 +59,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_whisp_audio, parent, false);
                 break;
             case Constants.Whisp.TYPE_PHOTO_VALUE:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_whisp, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_whisp_photo, parent, false);
                 break;
         }
 
@@ -127,11 +135,17 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
                                                           }
                                                       }
                     );
-
                 });
                 break;
             case Constants.Whisp.TYPE_PHOTO:
-                //type = Constants.Whisp.TYPE_PHOTO_VALUE;
+                Picasso.get()
+                        .load(whisp.getContent())
+                        .resize(50, 50)
+                        .centerCrop()
+                        .into(holder.photoImageView);
+                holder.photoImageView.setOnClickListener(v -> {
+                    clickListener.itemClicked(whisp);
+                });
                 break;
         }
     }
@@ -164,7 +178,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
         SeekBar whispSeekBar;
         Handler handler = new Handler();
         Runnable updateTime;
-
+        ImageView photoImageView;
 
         WhispViewHolder(View view) {
             super(view);
@@ -172,6 +186,11 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
             contentTextView = view.findViewById(R.id.contentTextView);
             playButton = view.findViewById(R.id.playButton);
             whispSeekBar = view.findViewById(R.id.whispSeekBar);
+            photoImageView = view.findViewById(R.id.photoImageView);
         }
+    }
+
+    public interface WhispAdapterClickListener {
+        void itemClicked(Whisp whisp);
     }
 }

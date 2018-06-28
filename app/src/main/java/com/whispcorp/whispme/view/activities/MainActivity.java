@@ -25,12 +25,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.franmontiel.fullscreendialog.FullScreenDialogFragment;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
@@ -48,8 +44,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import cafe.adriel.androidaudiorecorder.AndroidAudioRecorder;
 import cafe.adriel.androidaudiorecorder.model.AudioChannel;
@@ -109,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
 
-        SpaceNavigationView spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
+        SpaceNavigationView spaceNavigationView = findViewById(R.id.space);
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("HOME", R.drawable.ic_home));
         spaceNavigationView.addSpaceItem(new SpaceItem("NOTIFICATION", R.drawable.ic_flash));
