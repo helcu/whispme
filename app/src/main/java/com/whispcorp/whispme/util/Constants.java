@@ -12,6 +12,7 @@ public class Constants {
         public final static String LONGITUDE = "EXTRA_LONGITUDE";
         public final static String LATITUDE = "EXTRA_LATITUDE";
         public final static String WHISPADAPTER_FULLSCREENIMAGE = "EXTRA_WHISPADAPTER_FULLSCREENIMAGE";
+        public final static String MAIN_COMMENTS = "MAIN_COMMENTS";
     }
 
     public static class RequestCode {
