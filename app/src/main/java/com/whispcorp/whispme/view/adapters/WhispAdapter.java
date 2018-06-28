@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.whispcorp.whispme.R;
@@ -69,7 +68,15 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
     @Override
     public void onBindViewHolder(WhispViewHolder holder, int position) {
         Whisp whisp = whisps.get(position);
+
         holder.titleTextView.setText(whisp.getTitle());
+        holder.likesTextView.setText(whisp.getLikes() + " likes");
+        holder.viewsTextView.setText(whisp.getViews() + " views");
+        holder.commentsTextView.setText(whisp.getComments() + " comments");
+        holder.commentsTextView.setOnClickListener(v -> {
+            clickListener.commentClicked(whisp);
+        });
+
 
         switch (whisp.getType()) {
             case Constants.Whisp.TYPE_TEXT:
@@ -144,7 +151,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
                         .centerCrop()
                         .into(holder.photoImageView);
                 holder.photoImageView.setOnClickListener(v -> {
-                    clickListener.itemClicked(whisp);
+                    clickListener.photoClicked(whisp);
                 });
                 break;
         }
@@ -174,6 +181,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
 
     class WhispViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView, contentTextView;
+        TextView likesTextView, viewsTextView, commentsTextView;
         Button playButton;
         SeekBar whispSeekBar;
         Handler handler = new Handler();
@@ -187,10 +195,15 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
             playButton = view.findViewById(R.id.playButton);
             whispSeekBar = view.findViewById(R.id.whispSeekBar);
             photoImageView = view.findViewById(R.id.photoImageView);
+            likesTextView = view.findViewById(R.id.likesTextView);
+            viewsTextView = view.findViewById(R.id.viewsTextView);
+            commentsTextView = view.findViewById(R.id.commentsTextView);
         }
     }
 
     public interface WhispAdapterClickListener {
-        void itemClicked(Whisp whisp);
+        void photoClicked(Whisp whisp);
+
+        void commentClicked(Whisp whisp);
     }
 }

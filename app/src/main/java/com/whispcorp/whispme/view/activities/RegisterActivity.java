@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.User;
 import com.whispcorp.whispme.network.WhispRemoteProvider;
+import com.whispcorp.whispme.util.Constants;
 
 import org.json.JSONObject;
 
@@ -54,7 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
                     WhispRemoteProvider.registerUser(user, new WhispRemoteProvider.ProviderRequestListener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject entities) {
-                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            Intent intent = new Intent();
+                            intent.putExtra(Constants.Extra.USERNAME, user.getUsername());
+                            setResult(RESULT_OK, intent);
                             finish();
                         }
 

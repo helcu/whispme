@@ -1,5 +1,6 @@
 package com.whispcorp.whispme.view.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.network.ApiProvider;
 import com.whispcorp.whispme.network.WhispRemoteProvider;
 import com.whispcorp.whispme.network.apiService.UserService;
+import com.whispcorp.whispme.network.modelService.BaseResponse;
 import com.whispcorp.whispme.network.modelService.OwnerResponse;
 import com.whispcorp.whispme.util.Constants;
 import com.whispcorp.whispme.util.SharedPreferencesUtil;
@@ -30,6 +32,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Context mContext = this;
+    private EditText usernameEditText, passwordEditText;
     private Button loginButton;
     UserService service;
 
@@ -45,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
-        EditText usernameEditText = findViewById(R.id.username);
-        EditText passwordEditText = findViewById(R.id.password);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
 
         service = ApiProvider.getUserService();
 
@@ -55,12 +59,12 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(view -> {
 
             service.loginUser(usernameEditText.getText().toString(), passwordEditText
-                    .getText().toString()).enqueue(new Callback<OwnerResponse>() {
+                    .getText().toString()).enqueue(new Callback<BaseResponse<OwnerResponse>>() {
                 @Override
-                public void onResponse(Call<OwnerResponse> call, Response<OwnerResponse> response) {
+                public void onResponse(Call<BaseResponse<OwnerResponse>> call, Response<BaseResponse<OwnerResponse>> response) {
 
                     if (response.isSuccessful()) {
-                        OwnerResponse item = response.body();
+                        OwnerResponse item = response.body().getData();
                         SharedPreferencesUtil.setValue(Constants.SharedPreferencesConstant
                                 .USER_ID, item.getId());
                         SharedPreferencesUtil.setValue(Constants.SharedPreferencesConstant
@@ -86,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<OwnerResponse> call, Throwable t) {
+                public void onFailure(Call<BaseResponse<OwnerResponse>> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "Servicio no disponible", Toast.LENGTH_SHORT)
                             .show();
                 }
@@ -115,10 +119,29 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         TextView registerTextView = findViewById(R.id.registerTextView);
-        registerTextView.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,
-                RegisterActivity.class)));
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
+            startActivityForResult(intent, Constants.RequestCode.LOGIN_REGISTER);
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Constants.RequestCode.LOGIN_REGISTER:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        String username = data.getStringExtra(Constants.Extra.USERNAME);
+                        usernameEditText.setText(username);
+                        passwordEditText.setFocusable(true);
+                        break;
+                    case RESULT_CANCELED:
+                        break;
+                }
+                break;
+
+        }
+    }
 }
 
 

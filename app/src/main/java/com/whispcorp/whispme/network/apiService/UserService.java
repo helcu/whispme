@@ -1,5 +1,6 @@
 package com.whispcorp.whispme.network.apiService;
 
+import com.whispcorp.whispme.network.modelService.BaseResponse;
 import com.whispcorp.whispme.network.modelService.OwnerResponse;
 
 import java.security.acl.Owner;
@@ -18,5 +19,5 @@ public interface UserService {
 
     @POST("user/login")
     @FormUrlEncoded
-    Call<OwnerResponse> loginUser(@Field("username") String username, @Field("password") String password);
+    Call<BaseResponse<OwnerResponse>> loginUser(@Field("username") String username, @Field("password") String password);
 }

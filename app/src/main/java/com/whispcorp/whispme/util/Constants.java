@@ -13,6 +13,7 @@ public class Constants {
         public final static String LATITUDE = "EXTRA_LATITUDE";
         public final static String WHISPADAPTER_FULLSCREENIMAGE = "EXTRA_WHISPADAPTER_FULLSCREENIMAGE";
         public final static String MAIN_COMMENTS = "MAIN_COMMENTS";
+        public final static String USERNAME = "EXTRA_USERNAME";
     }
 
     public static class RequestCode {
@@ -21,6 +22,7 @@ public class Constants {
         public final static int RECORD_AUDIO = 1113;
         public final static int WRITE_EXTERNAL_STORAGE = 1114;
         public final static int WHISP_RECORDED_AUDIO = 1115;
+        public final static int LOGIN_REGISTER = 1117;
     }
 
     public static class UpdateTime {

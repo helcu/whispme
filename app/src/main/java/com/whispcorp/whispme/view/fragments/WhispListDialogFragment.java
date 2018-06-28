@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.util.Constants;
+import com.whispcorp.whispme.view.activities.CommentsActivity;
 import com.whispcorp.whispme.view.activities.FullscreenImageActivity;
 import com.whispcorp.whispme.view.adapters.WhispAdapter;
 
@@ -39,10 +40,20 @@ public class WhispListDialogFragment extends DialogFragment {
     int position = -1;
 
     public WhispListDialogFragment() {
-        adapter = new WhispAdapter(whisp -> {
-            Intent intent = new Intent(getContext(), FullscreenImageActivity.class);
-            intent.putExtra(Constants.Extra.WHISPADAPTER_FULLSCREENIMAGE, whisp);
-            startActivity(intent);
+        adapter = new WhispAdapter(new WhispAdapter.WhispAdapterClickListener() {
+            @Override
+            public void photoClicked(Whisp whisp) {
+                Intent intent = new Intent(getContext(), FullscreenImageActivity.class);
+                intent.putExtra(Constants.Extra.WHISPADAPTER_FULLSCREENIMAGE, whisp);
+                startActivity(intent);
+            }
+
+            @Override
+            public void commentClicked(Whisp whisp) {
+                Intent intent = new Intent(getContext(), CommentsActivity.class);
+                intent.putExtra(Constants.Extra.MAIN_COMMENTS, whisp);
+                startActivity(intent);
+            }
         });
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
     }
