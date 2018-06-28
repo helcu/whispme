@@ -91,6 +91,12 @@ dependencies {
     // Voice recorder
     implementation 'com.github.adrielcafe:AndroidAudioRecorder:0.3.0'
 
+    //dialog full
+    implementation 'com.github.franmontiel:FullScreenDialog:1.0.1'
+
+    //camera
+    implementation 'com.wonderkiln:camerakit:0.12.0'
+    compile 'com.hluhovskyi.camerabutton:camerabutton:2.0.1'
     // Picasso: Image downloading and caching
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

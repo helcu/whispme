@@ -2,6 +2,8 @@ package com.whispcorp.whispme.view.activities;
 
 import android.Manifest;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -60,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
     ProfileFragment profileFragmentAdapter;
     FloatingActionButton voiceFab, textFab, photoFab;
     private ProgressDialog mProgress;
+
+    FragmentManager fm;
+    SubmitDialogFragment tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,10 +205,28 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.RequestCode.WHISP_RECORDED_AUDIO) {
             if (resultCode == RESULT_OK) {
+
                 uploadWhisp();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
             }
+        }else if(requestCode == Constants.RequestCode.WHISP_TAKE_PHOTO){
+
+            if (resultCode == RESULT_OK) {
+                if(data.getStringExtra(Constants.Whisp.TYPE_PHOTO).equals(Constants.Whisp.TYPE_PHOTO)){
+
+                    fm = ((Activity) MainActivity.this).getFragmentManager();
+                    tv  = new SubmitDialogFragment();
+                    tv.setImage(data.getStringExtra(Constants.Whisp.TYPE_PHOTO_IMAGE));
+                    tv.setCancelable(false);
+
+                    tv.show(fm,"fragment");
+                }
+
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
@@ -239,6 +262,9 @@ public class MainActivity extends AppCompatActivity {
 
         photoFab.setOnClickListener(view -> {
             //Toast.makeText(MainActivity.this, "photoFab", Toast.LENGTH_SHORT).show();
+
+            startActivityForResult(new Intent(MainActivity.this,CameraActivity.class),Constants.RequestCode.WHISP_TAKE_PHOTO);
+
             toggleFabsVisibility();
         });
     }
@@ -322,10 +348,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void uploadWhisp() {
+    public void uploadWhisp() {
 
-        mProgress.setMessage("Creating your whisp!");
-        mProgress.show();
+        //mProgress.setMessage("Creating your whisp!");
+        //mProgress.show();
 
         StorageReference mStorage = FirebaseStorage.getInstance().getReference();
 
@@ -352,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
                         whisp.setTitle("My Whisp");
                         whisp.setLatitude(MapMenuFragment.LATITUDE);
                         whisp.setLongitude(MapMenuFragment.LONGITUDE);
-                        apiUploadWhisp(whisp);
+                        apiUploadWhisp(whisp,userId);
 
                     }).addOnFailureListener(e ->
                             Toast.makeText(mContext,
@@ -361,11 +387,11 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void apiUploadWhisp(Whisp whisp) {
+    public void apiUploadWhisp(Whisp whisp, String id) {
         JSONObject jsonObject = new JSONObject();
         try {
 
-            jsonObject.put("owner", "5ae935c7a12114001036bbe5");//whisp.getOwner().toString());
+            jsonObject.put("owner", id);//whisp.getOwner().toString());
             jsonObject.put("type", whisp.getType());
             jsonObject.put("content", whisp.getContent());
             jsonObject.put("title", whisp.getTitle());
