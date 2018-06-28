@@ -66,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fm;
     SubmitDialogFragment tv;
 
+    public MapMenuFragment getMap_menu_rag() {
+        return map_menu_rag;
+    }
+
+    public void setMap_menu_rag(MapMenuFragment map_menu_rag) {
+        this.map_menu_rag = map_menu_rag;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,7 +214,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == Constants.RequestCode.WHISP_RECORDED_AUDIO) {
             if (resultCode == RESULT_OK) {
 
-                uploadWhisp();
+
+                fm = ((Activity) MainActivity.this).getFragmentManager();
+                tv  = new SubmitDialogFragment();
+                tv.setType("audio");
+                tv.setCancelable(false);
+                tv.show(fm,"fragment");
+
+                //uploadWhisp();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
             }
@@ -218,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
                     fm = ((Activity) MainActivity.this).getFragmentManager();
                     tv  = new SubmitDialogFragment();
                     tv.setImage(data.getStringExtra(Constants.Whisp.TYPE_PHOTO_IMAGE));
+                    tv.setType("photo");
                     tv.setCancelable(false);
 
                     tv.show(fm,"fragment");
@@ -367,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                             .getReference().child("whisps_audios/" + audioName + ".mp3");
 
                     storageRef.getDownloadUrl().addOnSuccessListener(downloadUrl -> {
-                        String userId = SharedPreferencesUtil.getValue("userId", "1");
+                        String userId = SharedPreferencesUtil.getValue(Constants.SharedPreferencesConstant.USER_ID, "1");
                         Log.d("ggx", "URL: (AFTER) " + downloadUrl.toString());
 
                         Whisp whisp = new Whisp();
@@ -426,7 +442,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("ggx", "Main: POST: CATCH: " + e.getMessage());
                             e.printStackTrace();
                         } finally {
-                            mProgress.dismiss();
+                            //mProgress.dismiss();
                         }
                     }
 
@@ -436,7 +452,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("ggx", "Main: POST: ERROR: " + anError.getErrorCode());
                         Log.d("ggx", "Main: POST: ERROR: " + anError.getErrorBody());
                         Log.d("ggx", "Main: POST: ERROR: " + anError.getErrorDetail());
-                        mProgress.dismiss();
+                        //mProgress.dismiss();
                     }
                 });
     }
