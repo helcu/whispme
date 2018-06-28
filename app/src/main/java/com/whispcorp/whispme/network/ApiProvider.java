@@ -1,6 +1,7 @@
 package com.whispcorp.whispme.network;
 
-import com.whispcorp.whispme.network.apiService.FollowService;
+import com.whispcorp.whispme.network.apiService.FollowersService;
+import com.whispcorp.whispme.network.apiService.FollowingService;
 import com.whispcorp.whispme.network.apiService.TrendService;
 import com.whispcorp.whispme.network.apiService.UserService;
 import com.whispcorp.whispme.network.apiService.WhispService;
@@ -22,11 +23,11 @@ public class ApiProvider {
         return NetworkClient.getClient(BASE_URL).create(WhispService.class);
     }
 
-    public static FollowService getFollowerService() {
-        return NetworkClient.getClient(BASE_URL).create(FollowService.class);
+    public static FollowersService getFollowerService() {
+        return NetworkClient.getClient(BASE_URL).create(FollowersService.class);
     }
 
-    public static FollowService getFollowingService() {
-        return NetworkClient.getClient(BASE_URL).create(FollowService.class);
+    public static FollowingService getFollowingService() {
+        return NetworkClient.getClient(BASE_URL).create(FollowingService.class);
     }
 }

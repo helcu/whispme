@@ -3,21 +3,21 @@ package com.whispcorp.whispme.network.modelService;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FollowResponse {
+public class FollowersResponse {
     @SerializedName("_id")
     @Expose
     private String id;
     @SerializedName("follower")
     @Expose
-    private String follower;
+    private OwnerResponse follower;
     @SerializedName("followed")
     @Expose
-    private OwnerResponse followed;
+    private String followed;
     @SerializedName("__v")
     @Expose
     private Integer v;
 
-    public FollowResponse() {
+    public FollowersResponse() {
     }
 
     public String getId() {
@@ -28,19 +28,19 @@ public class FollowResponse {
         this.id = id;
     }
 
-    public String getFollower() {
+    public OwnerResponse getFollower() {
         return follower;
     }
 
-    public void setFollower(String follower) {
+    public void setFollower(OwnerResponse follower) {
         this.follower = follower;
     }
 
-    public OwnerResponse getFollowed() {
+    public String getFollowed() {
         return followed;
     }
 
-    public void setFollowed(OwnerResponse followed) {
+    public void setFollowed(String followed) {
         this.followed = followed;
     }
 
