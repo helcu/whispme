@@ -22,9 +22,9 @@
                 android:id="@+id/profileToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 mapbox:layout_collapseMode="pin"
-                mapbox:layout_collapseParallaxMultiplier="0.7" />
+                mapbox:layout_collapseParallaxMultiplier="0.7"
+                mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/profileRelativeLayout"
