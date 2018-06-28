@@ -2,10 +2,11 @@ package com.whispcorp.whispme.view.fragments;
 
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -16,7 +17,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -41,7 +42,9 @@ import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.Whisp;
 import com.whispcorp.whispme.services.LocationService;
 import com.whispcorp.whispme.util.Constants;
+import com.whispcorp.whispme.viewmodels.WhispViewModel;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -62,6 +65,9 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     public static Double LATITUDE;
     public static Double LONGITUDE;
     private boolean bound = false;
+
+    private WhispListDialogFragment whispListDialogFragment;
+    private WhispViewModel whispViewModel;
 
     private boolean isRequestingLocationPermission = false;
     private static boolean hasShownRequestLocationPermissionRationale = false;
@@ -96,16 +102,13 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(MapMenuFragment.this);
 
         mServiceConnection = new ServiceConnection() {
-
             @Override
             public void onServiceConnected(ComponentName className, IBinder service) {
                 Log.d("GGx", "onServiceConnected");
                 LocationService.LocalBinder binder = (LocationService.LocalBinder) service;
                 mLocationService = binder.getService();
                 bound = true;
-                mLocationService.setMapCallback(() -> {
-                    updateDefaultPosition();
-                });
+                mLocationService.setMapCallback(() -> updateDefaultPosition());
             }
 
             @Override
@@ -115,6 +118,13 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
                 updateDefaultPosition();
             }
         };
+
+        whispListDialogFragment = new WhispListDialogFragment();
+        whispViewModel = new ViewModelProviders().of(MapMenuFragment.this).get(WhispViewModel.class);
+        whispViewModel.getWhispMutableList().observe(this, whisps -> {
+            whispListDialogFragment.setWhisps(whisps);
+            updateWhispsMarkers(whisps);
+        });
 
         return view;
     }
@@ -150,18 +160,15 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(mContext, R.raw.style_json));
 
         mMap.setOnMarkerClickListener(marker -> {
-            //marker.setTitle(marker.getId());
-            //marker.showInfoWindow();
-            marker.showInfoWindow();
+
             if (Objects.equals(marker.getId(), mCurrentPositionMarker.getId())) {
-                // TODO: Show current position info
-                showWhispsDialog();
+                // Show current position info
+                marker.showInfoWindow();
                 return true;
             }
 
-            // TODO: Redirect to selected Whisp in cards
-            //Whisp whisp = markerWhisps.get(marker);
-            //whispmeApi.getWhispDetail(whisp.getWhispId());
+            // Redirect to selected Whisp in cards
+            showWhispsDialog((Whisp) marker.getTag());
 
             return true;
         });
@@ -342,6 +349,9 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void updateCurrentPosition(LatLng position) {
+        whispViewModel.initData();
+        //mMap.clear();
+
         if (mCurrentPositionMarker != null)
             mCurrentPositionMarker.remove();
         mCurrentPositionMarker = mMap.addMarker(new MarkerOptions().position(position).title("I'm here"));
@@ -353,6 +363,7 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
         mMap.setLatLngBoundsForCameraTarget(latLngBounds);
 
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, mMap.getCameraPosition().zoom));
+        Log.d("mutable", "updateCurrentPosition");
     }
 
     private void updateDefaultPosition() {
@@ -360,9 +371,16 @@ public class MapMenuFragment extends Fragment implements OnMapReadyCallback {
         updateCurrentPosition(position);
     }
 
-    public void showWhispsDialog() {
-        WhispListDialogFragment whispListDialogFragment = new WhispListDialogFragment();
-        whispListDialogFragment.show(getChildFragmentManager(), "dialog_whisps_detail");
+    public void showWhispsDialog(Whisp whisp) {
+        Log.d("mutable", "showWhispsDialog");
+        whispListDialogFragment.customShow(whisp, getChildFragmentManager(), "dialog_whisps_detail");
+    }
+
+    private void updateWhispsMarkers(List<Whisp> whisps) {
+        for (Whisp whisp : whisps) {
+            LatLng position = new LatLng(whisp.getLatitude(), whisp.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(position).title("I'm here")).setTag(whisp);
+        }
     }
 
     public interface MapCallback {

@@ -22,7 +22,7 @@ public class Constants {
     }
 
     public static class UpdateTime {
-        public final static int LOCATION = 5000;
+        public final static int LOCATION = 60000;
     }
 
     public static class Default {
