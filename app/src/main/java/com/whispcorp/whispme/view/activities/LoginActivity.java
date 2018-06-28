@@ -18,6 +18,7 @@ import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.network.ApiProvider;
 import com.whispcorp.whispme.network.WhispRemoteProvider;
 import com.whispcorp.whispme.network.apiService.UserService;
+import com.whispcorp.whispme.network.modelService.BaseResponse;
 import com.whispcorp.whispme.network.modelService.OwnerResponse;
 import com.whispcorp.whispme.util.Constants;
 import com.whispcorp.whispme.util.SharedPreferencesUtil;
@@ -56,12 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(view -> {
 
             service.loginUser(usernameEditText.getText().toString(), passwordEditText
-                    .getText().toString()).enqueue(new Callback<OwnerResponse>() {
+                    .getText().toString()).enqueue(new Callback<BaseResponse<OwnerResponse>>() {
                 @Override
-                public void onResponse(Call<OwnerResponse> call, Response<OwnerResponse> response) {
+                public void onResponse(Call<BaseResponse<OwnerResponse>> call, Response<BaseResponse<OwnerResponse>> response) {
 
                     if (response.isSuccessful()) {
-                        OwnerResponse item = response.body();
+                        OwnerResponse item = response.body().getData();
                         SharedPreferencesUtil.setValue(Constants.SharedPreferencesConstant
                                 .USER_ID, item.getId());
                         SharedPreferencesUtil.setValue(Constants.SharedPreferencesConstant
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<OwnerResponse> call, Throwable t) {
+                public void onFailure(Call<BaseResponse<OwnerResponse>> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "Servicio no disponible", Toast.LENGTH_SHORT)
                             .show();
                 }

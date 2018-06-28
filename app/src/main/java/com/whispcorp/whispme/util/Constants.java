@@ -19,6 +19,7 @@ public class Constants {
         public final static int RECORD_AUDIO = 1113;
         public final static int WRITE_EXTERNAL_STORAGE = 1114;
         public final static int WHISP_RECORDED_AUDIO = 1115;
+        public final static int WHISP_TAKE_PHOTO = 1116;
     }
 
     public static class UpdateTime {
@@ -66,5 +67,14 @@ public class Constants {
         public final static String USER_BIO = "user_bio";
     }
 
+    public static class Whisp {
+        public final static String TYPE_TEXT = "text";
+        public final static int TYPE_TEXT_VALUE = 1;
+        public final static String TYPE_AUDIO = "audio";
+        public final static int TYPE_AUDIO_VALUE = 2;
+        public final static String TYPE_PHOTO = "photo";
+        public final static int TYPE_PHOTO_VALUE = 3;
+        public final static String TYPE_PHOTO_IMAGE = "image";
+    }
 
 }

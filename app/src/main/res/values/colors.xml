@@ -13,5 +13,7 @@
     <color name="grey">#BDBDBD</color>
     <color name="white">#FFFFFD</color>
     <color name="colorConfirm">#3AEF29</color>
-    <color name="semiTransparentWhite">#40FFFFFF</color>
+    <color name="semiTransparentWhite">@android:color/transparent</color>
+    <color name="transparentBar">@android:color/transparent</color>
+
 </resources>
