@@ -3,6 +3,7 @@ package com.whispcorp.whispme.view.adapters;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,11 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.whispcorp.whispme.R;
 import com.whispcorp.whispme.database.entities.Whisp;
@@ -70,17 +76,28 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
     @Override
     public void onBindViewHolder(WhispViewHolder holder, int position) {
         Whisp whisp = whisps.get(position);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("whisps");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Long dd = dataSnapshot.getChildrenCount();
+                holder.titleTextView.setText(whisp.getTitle());
+                holder.likesTextView.setText(whisp.getLikes() + " likes");
+                holder.viewsTextView.setText(whisp.getViews() + " views");
+                holder.commentsTextView.setText(dataSnapshot.getChildrenCount() + " comments");
+                holder.commentsTextView.setOnClickListener(v -> {
+                    clickListener.onCommentClicked(whisp);
+                });
 
-        holder.titleTextView.setText(whisp.getTitle());
-        holder.likesTextView.setText(whisp.getLikes() + " likes");
-        holder.viewsTextView.setText(whisp.getViews() + " views");
-        holder.commentsTextView.setText(whisp.getComments() + " comments");
-        holder.commentsTextView.setOnClickListener(v -> {
-            clickListener.onCommentClicked(whisp);
-        });
+                holder.profileCircleImageView.setOnClickListener(v -> {
+                    clickListener.onProfileCircle(whisp);
+                });
+            }
 
-        holder.profileCircleImageView.setOnClickListener(v -> {
-            clickListener.onProfileCircle(whisp);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
 
         switch (whisp.getType()) {

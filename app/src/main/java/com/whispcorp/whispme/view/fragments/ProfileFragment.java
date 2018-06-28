@@ -57,8 +57,8 @@ public class ProfileFragment extends Fragment {
         profileCollapsingToolbarLayout = view.findViewById(R.id.profileCollapsingToolbarLayout);
         profileViewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
 
-        profileViewPagerAdapter.addFragment(new FollowersFragment(), "Followers\n200");
-        profileViewPagerAdapter.addFragment(new FollowingFragment(), "Folowing\n300");
+        profileViewPagerAdapter.addFragment(new FollowersFragment(), "Followers");
+        profileViewPagerAdapter.addFragment(new FollowingFragment(), "Folowing");
 
         profileCollapsingToolbarLayout.setTitle(username);
         profileCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.space_transparent));
