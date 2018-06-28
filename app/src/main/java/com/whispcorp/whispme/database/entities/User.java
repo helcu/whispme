@@ -3,8 +3,10 @@ package com.whispcorp.whispme.database.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = User.TB_USER)
-public class User {
+public class User implements Serializable {
 
     public static final String TB_USER = "User";
 
