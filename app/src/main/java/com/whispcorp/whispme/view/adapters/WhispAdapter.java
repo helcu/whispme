@@ -76,7 +76,7 @@ public class WhispAdapter extends RecyclerView.Adapter<WhispAdapter.WhispViewHol
     @Override
     public void onBindViewHolder(WhispViewHolder holder, int position) {
         Whisp whisp = whisps.get(position);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("whisps");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("whisps").child(whisp.getServerId()).child("comments");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

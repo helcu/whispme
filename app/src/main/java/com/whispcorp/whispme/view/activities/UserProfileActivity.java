@@ -6,6 +6,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,7 @@ import com.whispcorp.whispme.viewmodels.UserViewModel;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    Context mContext;
+    Context mContext = this;
     CollapsingToolbarLayout profileCollapsingToolbarLayout;
     ViewPagerAdapter profileViewPagerAdapter;
     ViewPager profileViewPager;
@@ -51,8 +53,8 @@ public class UserProfileActivity extends AppCompatActivity {
         profileCollapsingToolbarLayout = findViewById(R.id.profileCollapsingToolbarLayout);
         profileViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        profileViewPagerAdapter.addFragment(new FollowersFragment(), "Followers\n" + owner.getFollowers());
-        profileViewPagerAdapter.addFragment(new FollowingFragment(), "Folowing\n" + owner.getFollowing());
+        profileViewPagerAdapter.addFragment(new FollowersFragment(), "Followers");
+        profileViewPagerAdapter.addFragment(new FollowingFragment(), "Folowing");
 
         profileCollapsingToolbarLayout.setTitle(username);
         profileCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.space_transparent));
@@ -61,6 +63,13 @@ public class UserProfileActivity extends AppCompatActivity {
 
         profileViewPager.setAdapter(profileViewPagerAdapter);
         profileTabLayout.setupWithViewPager(profileViewPager);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_user_profile, menu);
+        return true;
     }
 
     @Override

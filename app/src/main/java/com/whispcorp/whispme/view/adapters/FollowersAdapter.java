@@ -27,11 +27,13 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.Foll
 
     @Override
     public void onBindViewHolder(@NonNull FollowViewHolder holder, int position) {
-        Picasso.get()
-                .load(followerList.get(position).getFollower().getPhoto())
-                .resize(holder.profileImageView.getWidth(), holder.profileImageView.getHeight())
-                .centerCrop()
-                .into(holder.profileImageView);
+        if (!followerList.get(position).getFollower().getPhoto().isEmpty()) {
+            Picasso.get()
+                    .load(followerList.get(position).getFollower().getPhoto())
+                    .resize(holder.profileImageView.getWidth(), holder.profileImageView.getHeight())
+                    .centerCrop()
+                    .into(holder.profileImageView);
+        }
         holder.emailTextView.setText(followerList.get(position).getFollower().getEmail());
         holder.userTextView.setText(followerList.get(position).getFollower().getUsername());
     }
