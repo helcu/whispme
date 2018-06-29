@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.ProfileFragment">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/profileAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/white">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/profileCollapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            mapbox:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/profileToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                mapbox:layout_collapseMode="pin"
+                mapbox:layout_collapseParallaxMultiplier="0.7"
+                mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/profileRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                mapbox:layout_collapseMode="pin">
+
+                <ImageView
+                    android:id="@+id/photoProfileImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="My profile Image"
+                    android:foreground="@color/colorProfilePhotoFilter"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/portada1" />
+
+                <LinearLayout
+                    android:id="@+id/profileNameLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    mapbox:layout_constraintBottom_toBottomOf="parent"
+                    mapbox:layout_constraintEnd_toEndOf="parent"
+                    mapbox:layout_constraintStart_toStartOf="parent"
+                    mapbox:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileCircleImageView"
+                        android:layout_width="@dimen/profile_circle_image_view_size"
+                        android:layout_height="@dimen/profile_circle_image_view_size"
+                        android:layout_marginBottom="10dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/profileNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="My Name and Last Name"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/profileUsernameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="'@Username'"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/profileNestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        mapbox:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/nestedConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/profileTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/colorPrimary"
+                mapbox:layout_constraintEnd_toEndOf="parent"
+                mapbox:layout_constraintStart_toStartOf="parent"
+                mapbox:layout_constraintTop_toTopOf="parent"
+                mapbox:tabGravity="fill"
+                mapbox:tabIndicatorColor="@android:color/white"
+                mapbox:tabMaxWidth="0dp"
+                mapbox:tabMode="fixed"
+                mapbox:tabSelectedTextColor="@android:color/white" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/profileViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                mapbox:layout_constraintBottom_toBottomOf="parent"
+                mapbox:layout_constraintEnd_toEndOf="parent"
+                mapbox:layout_constraintStart_toStartOf="parent"
+                mapbox:layout_constraintTop_toBottomOf="@+id/profileTabLayout" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

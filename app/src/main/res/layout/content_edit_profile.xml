@@ -1,0 +1,90 @@
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/profile_edit_photo"
+            android:layout_marginTop="20dp"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="2dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar Foto"
+            android:id="@+id/changeProfilePhoto"
+            android:layout_below="@+id/profile_edit_photo"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/changeProfilePhoto"
+                    android:layout_marginTop="80dp"
+                    android:id="@+id/relLayout1"
+                    android:background="@drawable/border_bottom_grey">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_user_name"
+                        android:layout_centerVertical="true"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/username"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
+                        android:background="@null"
+                        android:inputType="textNoSuggestions"
+                        android:hint="username"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/relLayout1"
+                    android:id="@+id/relLayout2"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/border_bottom_grey"
+                    >
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_description"
+                        android:layout_centerVertical="true"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/description"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
+                        android:background="@null"
+                        android:inputType="textMultiLine"
+                        android:hint="description"/>
+
+                </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</merge>

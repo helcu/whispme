@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorAccentLogin">#f9f9f9</color>
+    <color name="colorButtonLogin">#e95c35</color>
+
+    <color name="colorProfilePhotoFilter">#99e95c35</color>
+
+    <color name="black">#000000</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="white">#FFFFFD</color>
+    <color name="colorConfirm">#3AEF29</color>
+    <color name="semiTransparentWhite">@android:color/transparent</color>
+    <color name="transparentBar">@android:color/transparent</color>
+
+</resources>
